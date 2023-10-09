@@ -1,0 +1,41 @@
+<h1>投稿詳細</h1>
+
+<table class="table-borderless">
+  <tr>
+    <td>
+      <% if @store.image.attached? %>
+       <%= image_tag @store.image, size: "100x100" %>
+      <% else %>
+       <%= image_tag 'no_image', size: "100x100" %>
+      <% end %>
+    </td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>店名</td>
+    <td><%= @store.name %></td>
+  </tr>
+
+  <tr>
+    <td>県名</td>
+    <td><%= @store.prefecture %></td>
+  </tr>
+
+  <tr>
+    <td>最寄り駅</td>
+    <td><%= @store.nearest_station %></td>
+  </tr>
+
+  <tr>
+    <td>カテゴリー</td>
+    <td><%= @store.category_id %></td>
+  </tr>
+
+  <tr>
+    <td>店説明</td>
+    <td><%= @store.description %></td>
+  </tr>
+
+
+</table>
