@@ -1,8 +1,6 @@
-<%#= javascript_tag 'category_form', 'data-turbolinks-track': 'reload' %>
-<script>
-    //↓ページ読み込みが完了したら
+//↓ページ読み込みが完了したら
 $(function() {
-  function appendOption(category) {
+  function appendOption(category) { 
     //変数の宣言
     let html = `<option value='${category.id}' data-category='${category.id}'>${category.name}</option>`;
     return html;
@@ -36,12 +34,11 @@ $(function() {
     $('.category-form').append(grandchildrenSelectHtml);
   }
 
-  $('.parent_id_form').on('change', function() {
-    let parentId = document.querySelector('.parent_id_form').value;//←IDがついているものを探し()内
-    console.log({parentId})
-    if (parentId != -1) {
+  $('#parent-category').on('change', function() {
+    let parentId = document.getElementById('parent-category').value;//←IDがついているものを探し()内
+    if (parentId != '---') {
       $.ajax({
-        url: '/member/get_category/children',
+        url: '/get_category/children',
         type: 'GET',
         data: {
           parent_id: parentId,
@@ -50,7 +47,6 @@ $(function() {
       })
       //done(通信が成功した場合))
         .done(function(children) {
-          console.log({children})
           $('#children-wrapper').remove();
           $('#grandchildren-wrapper').remove();
           let insertHTML = '';
@@ -72,7 +68,7 @@ $(function() {
     let childrenId = $('#children-category option:selected').data('category');
     if (childrenId != '---') {
       $.ajax({
-        url: '/member/get_category/grandchildren',
+        url: '/get_category/grandchildren',
         type: 'GET',
         data: {
           children_id: childrenId,
@@ -97,55 +93,3 @@ $(function() {
     }
   });
 });
-
-</script>
-
-<h1>店舗登録</h1>
-
-<%= form_with model: @store, url: member_stores_path do |f| %>
-
-<div class="form-group">
-<%= f.label :image, "お店のイメージ" %>
-<%= f.file_field :image, accept: "image/*" %>
-</div>
-
-<div class="form-group">
-<%= f.label :category_id, "カテゴリ" %>
-<%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "カテゴリを選択" %>
-</div>
-
-
-<div class='form-group category-form'>
-    <select class='form-control parent_id_form' name='parent_id'>
-      <% @category_parent_array.each do |category| %>
-          <option value='<%= category[1] %>' data-category='<%= category[1] %>'><%= category[0] %></option>
-      <% end %>
-    </select>
-    <i class='fas fa-chevron-down'></i>
-</div>
-
-<div class="form-group">
-<%= f.label :prefecture, "県名" %>
-<%= f.text_field :prefecture %>
-</div>
-
-<div class="form-group">
-<%= f.label :nearest_station, "最寄り駅" %>
-<%= f.text_field :nearest_station %>
-</div>
-
-<div class="form-group">
-<%= f.label :description, "説明文" %>
-<%= f.text_area :description %>
-</div>
-
-<div class="form-group">
-<%= f.label :name, "店名" %>
-<%= f.text_field :name %>
-</div>
-
-<div class="form-group">
-<%= f.submit '新規投稿', class: "btn btn-success" %>
-</div>
-
-<% end %>

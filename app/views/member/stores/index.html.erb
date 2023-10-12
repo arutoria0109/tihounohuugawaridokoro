@@ -1,0 +1,24 @@
+<table class= "table table-hover table-inverse mx-auto my-3">
+ <tr class="p-3 mb-2 text-dark" style="background:pink">
+  <th>投稿ID</th>
+  <th>店舗名</th>
+  <th>県名</th>
+  <th>最寄り駅</th>
+  <th>カテゴリ</th>
+  <th>説明文</th>
+ </tr>
+
+ <% @stores.each do |store| %>
+
+ <tr>
+   <td><%= store.id %></td>
+
+   <td><%= store.name %></td>
+   <td><%= store.prefecture %></td>
+   <td><%= store.nearest_station %></td>
+   <td><%= store.category.name %></td>
+   <td><%= store.description %></td>
+
+ </tr>
+ <% end %>
+ </table>

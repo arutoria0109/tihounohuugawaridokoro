@@ -18,7 +18,9 @@
   </tr>
 
   <tr>
-    <td>県名</td>
+    <td>カテゴリ</td>
+    <td><%= @store. %></td>
+    <td><%= @store.prefecture %></td>
     <td><%= @store.prefecture %></td>
   </tr>
 
@@ -28,14 +30,15 @@
   </tr>
 
   <tr>
-    <td>カテゴリー</td>
-    <td><%= @store.category_id %></td>
-  </tr>
-
-  <tr>
     <td>店説明</td>
     <td><%= @store.description %></td>
   </tr>
 
+  <tr>
+    <td>
+     <%= link_to "編集する", edit_member_store_path, class:"btn btn-success" %>
+    </td>
+  </tr>
 
 </table>
+
