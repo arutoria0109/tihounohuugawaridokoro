@@ -61,6 +61,9 @@ ActiveRecord::Schema.define(version: 2023_10_11_134804) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.integer "store_id"
+    t.text "comment"
+    t.integer "member_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -97,6 +100,8 @@ ActiveRecord::Schema.define(version: 2023_10_11_134804) do
     t.string "nearest_station"
     t.string "name"
     t.integer "category_id"
+    t.integer "store_category_id"
+    t.integer "member_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -2,7 +2,8 @@ class StoreCategory < ApplicationRecord
 
   belongs_to :category
   belongs_to :store
-  
+  has_ancestry
+
   #controllerから引数を４つ受け取る(作成するデータ、親カテゴリID、子カテゴリID、孫カテゴリID)
   def self.maltilevel_category_create(store, parent_id, children_id, grandchildren_id)
     #親カテゴリのIDを引数として受け取れた場合かつ、初期値でない場合処理
@@ -17,11 +18,11 @@ class StoreCategory < ApplicationRecord
       category = Category.find(children_id)
       StoreCategory.create(store_id: store.id, category_id: category.id)
     end
-    
+
     if grandchildren_id.present? && grandchildren_id != '---'
       category = Category.find(grandchildren_id)
       StoreCategory.create(store_id: store.id, category_id: category.id)
     end
   end
-  
+
 end

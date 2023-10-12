@@ -17,3 +17,14 @@ stores_prefecture = stores.children.create(name: '北海道')
 
 stores_prefecture.children.create([{ name: '温泉'}, { name: 'カフェ'}, { name: '飲食店'}, { name: '観光スポット'}])
 
+
+stores = Category.create(name: '東北地方')
+
+stores_prefecture = stores.children.create(name: '青森県')
+
+stores_prefecture.children.create([{ name: '温泉'}, { name: 'カフェ'}, { name: '飲食店'}, { name: '観光スポット'}])
+
+stores_prefecture = stores.children.create(name: '岩手県')
+
+stores_prefecture.children.create([{ name: '温泉'}, { name: 'カフェ'}, { name: '飲食店'}, { name: '観光スポット'}])
+

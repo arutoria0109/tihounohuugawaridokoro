@@ -11,7 +11,7 @@ class Member::StoresController < ApplicationController
         #maltilevel_category_createメソッドに引数を4つ渡して実行
         StoreCategory.maltilevel_category_create(
           @store,
-          params[:parent_id],
+         params[:parent_id],
           params[:children_id],
           params[:grandchildren_id]
           )
@@ -25,7 +25,9 @@ class Member::StoresController < ApplicationController
   end
 
   def index
+    
       @stores = Store.all
+      @category_parent_array = Category.category_parent_array_create
   end
 
   def get_category_children
@@ -39,6 +41,8 @@ class Member::StoresController < ApplicationController
 
   def show
       @store = Store.find(params[:id])
+      @comment = Comment.new
+      @member = current_member
       @category_parent_array = Category.category_parent_array_create
   end
 

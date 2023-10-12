@@ -19,9 +19,9 @@
 
   <tr>
     <td>カテゴリ</td>
-    <td><%= @store. %></td>
-    <td><%= @store.prefecture %></td>
-    <td><%= @store.prefecture %></td>
+    <% @store.store_categories.each do |category| %>
+    <td><%= category.category.name %></td>
+    <% end %>
   </tr>
 
   <tr>
@@ -39,6 +39,20 @@
      <%= link_to "編集する", edit_member_store_path, class:"btn btn-success" %>
     </td>
   </tr>
+
+  <div>
+  <p>コメント件数：<%= @store.comments.count %></p>
+  <% @store.comments.each do |comment| %>
+    <%= comment.member.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@member, @store, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメント入力欄" %>
+    <%= f.submit "送信する", member_store_comments_path %>
+  <% end %>
+</div>
 
 </table>
 
