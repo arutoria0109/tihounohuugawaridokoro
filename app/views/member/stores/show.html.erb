@@ -48,10 +48,13 @@
   <% end %>
 </div>
 <div>
-  <%= form_with model: [@member, @store, @comment] do |f| %>
+  <%= form_with model: [@member, @store, @comment], local: false do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメント入力欄" %>
-    <%= f.submit "送信する", member_store_comments_path %>
+    <%= f.submit "送信する" %>
   <% end %>
+  <%# if store_comment.member == current_member %>
+  <%#= link_to "Destroy", store_store_comment_path(store, store_comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
+  <%# end %>
 </div>
 
 </table>

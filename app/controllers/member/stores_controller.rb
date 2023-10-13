@@ -25,7 +25,7 @@ class Member::StoresController < ApplicationController
   end
 
   def index
-    
+
       @stores = Store.all
       @category_parent_array = Category.category_parent_array_create
   end
@@ -62,7 +62,7 @@ class Member::StoresController < ApplicationController
   private
 
   def store_params
-      params.require(:store).permit(:name, :prefecture, :nearest_station, :description, :category_id, :image)
+      params.require(:store).permit(:name, :nearest_station, :description, :image, :category_id)
   end
 
 end

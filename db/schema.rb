@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 2023_10_11_134804) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string "prefecture"
     t.string "description"
     t.string "nearest_station"
     t.string "name"

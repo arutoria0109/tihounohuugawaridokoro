@@ -127,6 +127,11 @@ $(function() {
 </div>
 
 <div class="form-group">
+<%= f.label :category_id, "カテゴリ" %>
+<%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "カテゴリを選択" %>
+</div>
+
+<div class="form-group">
 <%= f.label :description, "説明文" %>
 <%= f.text_area :description %>
 </div>
