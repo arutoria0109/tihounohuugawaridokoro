@@ -16,7 +16,7 @@ class Member::MembersController < ApplicationController
   def update
     @member = current_member
     @member.update(member_params)
-    redirect_to member_members_mypage_path
+    redirect_to members_mypage_path
   end
 
   private

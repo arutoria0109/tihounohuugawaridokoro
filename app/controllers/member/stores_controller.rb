@@ -6,17 +6,20 @@ class Member::StoresController < ApplicationController
   end
 
   def create
-      @store = Store.new(store_params)
+      @member = current_member
+      @store = @member.stores.build(store_params)
+      #@store = Store.new(store_params)
       if @store.save
         #maltilevel_category_createメソッドに引数を4つ渡して実行
         StoreCategory.maltilevel_category_create(
           @store,
          params[:parent_id],
           params[:children_id],
-          params[:grandchildren_id]
+           params[:grandchildren_id]
           )
-        redirect_to member_store_path(@store)
+        redirect_to store_path(@store)
       else
+        flash[:error] = @store.errors.full_messages.join(', ')
         @stores = Store.all
         #category_parent_array_createメソッドの戻り値として受け取った配列をインスタンス変数に代入
         @category_parent_array = Category.category_parent_array_create
@@ -53,7 +56,7 @@ class Member::StoresController < ApplicationController
   def update
       @store = Store.find(params[:id])
       if @store.update(store_params)
-      redirect_to member_store_path(@store)
+      redirect_to store_path(@store)
       else
       render :edit
       end

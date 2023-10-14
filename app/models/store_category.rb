@@ -13,7 +13,7 @@ class StoreCategory < ApplicationRecord
       #StoreCategory(中間テーブル)にレコードを作成する。
       StoreCategory.create(store_id: store.id, category_id: category.id)
     end
-    
+
     if children_id.present? && children_id != '---'
       category = Category.find(children_id)
       StoreCategory.create(store_id: store.id, category_id: category.id)

@@ -5,17 +5,17 @@ Rails.application.routes.draw do
   sessions: 'member/sessions'
   }
 
-  namespace :member do
+   scope module: :member do
    root "homes#top"
    get "/members/unsubscribe" => "members#unsubscribe"
    get "/members/mypage" => "members#show"
    get "/members/information/edit" => "members#edit"
-   patch "/members" => "members#update"
+   patch "/members/update" => "members#update"
    patch "/members/withdraw" => "members#withdraw"
    get '/get_category/children', to: 'stores#get_category_children', defaults: { format: 'json' }
    get '/get_category/grandchildren', to: 'stores#get_category_grandchildren', defaults: { format: 'json' }
    resources :stores do
-   resources :comments, only: [:create]
+    resources :comments, only: [:create]
    end
 
   end

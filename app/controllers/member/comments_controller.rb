@@ -1,15 +1,19 @@
 class Member::CommentsController < ApplicationController
 
   def create
-       store = Store.find(params[:store_id])
-    if comment = current_member.comments.new(comment_params)
-       comment.store_id = store.id
-       comment.save
-      redirect_to member_store_path
-    else
-      render :show
-    end
+  @member = current_member
+  @store = Store.find(params[:store_id])
+  @comment = @store.comments.build(comment_params)
+  @comment.member = @member
+
+   if @comment.save
+    redirect_to store_path(@store)
+   else
+    # エラーハンドリング
+    render :new # エラーが発生した場合、フォームを再表示するか、適切な処理を行う
+   end
   end
+
 
   private
 

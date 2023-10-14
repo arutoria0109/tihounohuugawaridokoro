@@ -17,12 +17,12 @@
    <% store.store_categories.each do |category| %>
    <td><%= category.category.name %></td>
    <% end %>
-   <%=link_to member_stores_path(store.id) do %>
+   <%=link_to stores_path(store.id) do %>
    <td><%= store.name %></td>
    <% end %>
    <td><%= store.description %></td>
    <td><%= store.nearest_station %></td>
-   <td><%= link_to "#{store.comments.count} コメント", member_store_path(store.id) %></td>
+   <td><%= link_to "#{store.comments.count} コメント", store_path(store.id) %></td>
 
  </tr>
  <% end %>

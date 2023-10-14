@@ -1,6 +1,6 @@
-//↓ページ読み込みが完了したら
+    //↓ページ読み込みが完了したら
 $(function() {
-  function appendOption(category) { 
+  function appendOption(category) {
     //変数の宣言
     let html = `<option value='${category.id}' data-category='${category.id}'>${category.name}</option>`;
     return html;
@@ -34,9 +34,10 @@ $(function() {
     $('.category-form').append(grandchildrenSelectHtml);
   }
 
-  $('#parent-category').on('change', function() {
-    let parentId = document.getElementById('parent-category').value;//←IDがついているものを探し()内
-    if (parentId != '---') {
+  $('.parent_id_form').on('change', function() {
+    let parentId = document.querySelector('.parent_id_form').value;//←IDがついているものを探し()内
+    console.log({parentId})
+    if (parentId != -1) {
       $.ajax({
         url: '/get_category/children',
         type: 'GET',
@@ -47,6 +48,7 @@ $(function() {
       })
       //done(通信が成功した場合))
         .done(function(children) {
+          console.log({children})
           $('#children-wrapper').remove();
           $('#grandchildren-wrapper').remove();
           let insertHTML = '';
@@ -76,6 +78,7 @@ $(function() {
         dataType: 'json',
       })
         .done(function(grandchildren) {
+          console.log('grandchildren:'+grandchildren)
           if (grandchildren.length != 0) {
             $('#grandchildren-wrapper').remove();
             let insertHTML = '';
@@ -93,3 +96,4 @@ $(function() {
     }
   });
 });
+
