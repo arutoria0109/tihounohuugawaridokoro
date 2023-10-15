@@ -48,6 +48,13 @@ class Member::StoresController < ApplicationController
       @category_parent_array = Category.category_parent_array_create
   end
 
+  def like
+    #ユーザがいいねした投稿を取得↓
+    @liked_stores = current_member.liked_stores
+    @category_parent_array = Category.category_parent_array_create
+  end
+
+
   def edit
       @store = Store.find(params[:id])
   end
@@ -66,6 +73,27 @@ class Member::StoresController < ApplicationController
      @store.destroy
     redirect_to stores_path
   end
+
+  def onsen
+
+  end
+
+  def cafe
+
+  end
+
+  def restaurant
+
+  end
+
+  def leisure
+
+  end
+
+  def shop
+
+  end
+
 
 
 

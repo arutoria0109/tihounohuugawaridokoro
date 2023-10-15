@@ -1,5 +1,6 @@
 class Member::LikeListsController < ApplicationController
 
+  
   def create
     store = Store.find(params[:store_id])
     like_list = current_member.like_lists.new(store_id: store.id)

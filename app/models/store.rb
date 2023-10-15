@@ -5,8 +5,10 @@ class Store < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :store_categories
   has_many :like_lists, dependent: :destroy
+  has_many :liking_members, through: :like_lists, source: :member
+  #多対多の関係性を持ついいねのモデルと投稿のモデルを使用する↑
   has_one_attached :image
-  
+
   def like_listed_by?(member)#ユーザidがFavoritesテーブル内に存在（exists?）するか
     like_lists.exists?(member_id: member.id)
   end

@@ -1,5 +1,5 @@
 <table class= "table table-hover table-inverse mx-auto my-3">
- <tr class="p-3 mb-2 text-dark" style="background:pink">
+ <tr class="p-3 mb-2 text-dark" style="background:lightgreen">
   <th>投稿ID</th>
   <th>〇〇地方</th>
   <th>都道府県</th>
@@ -11,28 +11,20 @@
   <th>いいね数</th>
  </tr>
 
- <% @stores.each do |store| %>
 
+<% @liked_stores.each do |store| %>
  <tr>
    <td><%= store.id %></td>
    <% store.store_categories.each do |category| %>
    <td><%= category.category.name %></td>
    <% end %>
-   <td><%= link_to store.name, store_path(store.id), class: "text-dark" %></td>
+   <td><%= link_to store.name, store_path(store.id), class: "text-dark text-border" %></td>
    <td><%= store.description %></td>
    <td><%= store.nearest_station %></td>
    <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
    <% if store.like_listed_by?(current_member) %>
-    <td>
-      <%= link_to store_like_lists_path(store), class: "text-danger", method: :delete do %>
+    <td class="text-info">
         ♥<%= store.like_lists.count %> いいね
-      <% end %>
-    </td>
-    <% else %>
-    <td>
-      <%= link_to store_like_lists_path(store), class: "text-dark", method: :post do %>
-        ♡<%= store.like_lists.count %> いいね
-      <% end %>
     </td>
   <% end %>
 
