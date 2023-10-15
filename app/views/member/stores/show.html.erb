@@ -13,11 +13,6 @@
   </tr>
 
   <tr>
-    <td>店名</td>
-    <td><%= @store.name %></td>
-  </tr>
-
-  <tr>
     <td>カテゴリ</td>
     <% @store.store_categories.each do |category| %>
     <td><%= category.category.name %></td>
@@ -25,8 +20,8 @@
   </tr>
 
   <tr>
-    <td>最寄り駅</td>
-    <td><%= @store.nearest_station %></td>
+    <td>店名</td>
+    <td><%= @store.name %></td>
   </tr>
 
   <tr>
@@ -35,39 +30,42 @@
   </tr>
 
   <tr>
-    <td>
-     <%= link_to "編集する", edit_store_path, class:"btn btn-success" %>
-    </td>
+    <td>最寄り駅</td>
+    <td><%= @store.nearest_station %></td>
   </tr>
 
-  <div>
+  <tr>
+    <td><%= link_to "編集する", edit_store_path, class:"btn btn-success" %></td>
+        <% if @store.member == current_member %>
+    <td><%= link_to 'Destroy', @store, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
+        <% end %>
+  </tr>
 
-    <p>member: <%= @member.inspect %></p>
-    <p>store: <%= @store.inspect %></p>
-    <p>comment: <%= @comment.inspect %></p>
-
-    <p>store.comments: <%= @store.comments.inspect %></p>
-
-
-
-
-  <p>コメント件数：<%= @store.comments.count %></p>
+ <tr>
+    <td>コメント件数：<%= @store.comments.count %>
   <% @store.comments.each do |comment| %>
     <%= comment.member.name %>
     <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <% if comment.member == current_member %>
+      <%= link_to "Destroy", store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <% end %>
   <% end %>
-</div>
-<div>
-  <%#= form_with model: [@member, @store, @comment], local: false do |f| %>
-  <%= form_with(model: [@store, @comment], local: true) do |f| %>
+ </td>
+ </tr>
 
+<tr>
+  <td>
+  <%= form_with(model: [@store, @comment], local: true) do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメント入力欄" %>
     <%= f.submit "送信する" %>
   <% end %>
-  <%# if store_comment.member == current_member %>
-  <%#= link_to "Destroy", store_store_comment_path(store, store_comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
+  </td>
+  <%# if comment.member == current_member %>
+  <%#= link_to "Destroy", store_comment_path(comment.store, comment), method: :delete %>
+  <%#= link_to '削除', store_comment_path(@store, comment), method: :delete %>
   <%# end %>
-</div>
+</tr>
+
 
 </table>
 

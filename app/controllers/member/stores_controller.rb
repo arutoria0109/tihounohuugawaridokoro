@@ -28,7 +28,6 @@ class Member::StoresController < ApplicationController
   end
 
   def index
-
       @stores = Store.all
       @category_parent_array = Category.category_parent_array_create
   end
@@ -61,6 +60,82 @@ class Member::StoresController < ApplicationController
       render :edit
       end
   end
+
+  def destroy
+     @store = Store.find(params[:id])
+     @store.destroy
+    redirect_to stores_path
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def store_search
+    # カテゴリ名を取得するために@categoryにレコードをとってくる
+    @category = Category.find_by(id: params[:id])
+    # 親カテゴリーを選択していた場合の処理
+    if @category.ancestry == nil
+      # Categoryモデル内の親カテゴリーに紐づく孫カテゴリーのidを取得
+      category = Category.find_by(id: params[:id]).indirect_ids
+      # 孫カテゴリーに該当するstoresテーブルのレコードを入れるようの配列を用意
+      @stores = []
+      # find_storeメソッドで処理
+      find_store(category)
+
+    # 孫カテゴリーを選択していた場合の処理
+    elsif @category.ancestry.include?("/")
+      # Categoryモデル内の親カテゴリーに紐づく孫カテゴリーのidを取得
+      @stores = Store.where(category_id: params[:id])
+
+    # 子カテゴリーを選択していた場合の処理
+    else
+      category = Category.find_by(id: params[:id]).child_ids
+      # 孫カテゴリーに該当するstoresテーブルのレコードを入れるようの配列を用意
+      @stores = []
+      # find_storeメソッドで処理
+      find_store(category)
+    end
+  end
+
+  def find_store(category)
+    category.each do |id|
+      store_array = Store.includes(:images).where(category_id: id)
+      # find_by()メソッドで該当のレコードがなかった場合、storeオブジェクトに空の配列を入れないようにするための処理
+      if store_array.present?
+        store_array.each do |store|
+          if store.present?
+          else
+            # find_by()メソッドで該当のレコードが見つかった場合、@store配列オブジェクトにそのレコードを追加する
+            @stores.push(store)
+          end
+        end
+      end
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   private
 

@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 2023_10_11_134804) do
   end
 
   create_table "like_lists", force: :cascade do |t|
-    t.integer "members_id"
-    t.integer "stores_id"
+    t.integer "member_id"
+    t.integer "store_id"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

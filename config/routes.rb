@@ -14,8 +14,13 @@ Rails.application.routes.draw do
    patch "/members/withdraw" => "members#withdraw"
    get '/get_category/children', to: 'stores#get_category_children', defaults: { format: 'json' }
    get '/get_category/grandchildren', to: 'stores#get_category_grandchildren', defaults: { format: 'json' }
+   get "store_search"
    resources :stores do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
+    resource :like_lists, only: [:create, :destroy]
+    collection do
+      get "menu_search"
+    end
    end
 
   end
@@ -24,11 +29,11 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
- namespace :admin do
+   namespace :admin do
   get "/" => "members#index"
   resources :members, only: [:show, :edit, :update]
   resources :categories, only: [:index, :create, :edit, :update]
- end
+   end
 
 
 

@@ -8,6 +8,7 @@
   <th>説明文</th>
   <th>最寄り駅</th>
   <th>コメント</th>
+  <th>いいね数</th>
  </tr>
 
  <% @stores.each do |store| %>
@@ -17,12 +18,23 @@
    <% store.store_categories.each do |category| %>
    <td><%= category.category.name %></td>
    <% end %>
-   <%=link_to stores_path(store.id) do %>
-   <td><%= store.name %></td>
-   <% end %>
+   <td><%= link_to store.name, store_path(store.id) %></td>
    <td><%= store.description %></td>
    <td><%= store.nearest_station %></td>
    <td><%= link_to "#{store.comments.count} コメント", store_path(store.id) %></td>
+   <% if store.like_listed_by?(current_member) %>
+    <td>
+      <%= link_to store_like_lists_path(store), method: :delete do %>
+        ♥<%= store.like_lists.count %> いいね
+      <% end %>
+    </td>
+    <% else %>
+    <td>
+      <%= link_to store_like_lists_path(store), method: :post do %>
+        ♡<%= store.like_lists.count %> いいね
+      <% end %>
+    </td>
+  <% end %>
 
  </tr>
  <% end %>

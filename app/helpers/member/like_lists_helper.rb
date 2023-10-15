@@ -1,0 +1,2 @@
+module Member::LikeListsHelper
+end

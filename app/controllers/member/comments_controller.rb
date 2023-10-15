@@ -14,6 +14,14 @@ class Member::CommentsController < ApplicationController
    end
   end
 
+  def destroy
+    Comment.find(params[:id]).destroy
+    redirect_to store_path(params[:store_id])
+        #@store = Store.find(params[:store_id])
+        #@comment = @store.comments.find(params[:id])
+        #@comment.destroy
+        #redirect_to store_path(@store)
+  end
 
   private
 
