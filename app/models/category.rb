@@ -6,7 +6,7 @@ class Category < ApplicationRecord
 
   def self.category_parent_array_create
     #{1}親カテゴリのセレクトボックス作成するための配列を用意し、初期値の格納
-    category_parent_array = [['---', -1]]
+    category_parent_array = ['---']
     #{2}親カテゴリを全て抽出し、{１}で作った配列にカテゴリ名とIDを格納する
     Category.where(ancestry: nil).each do |parent|
       category_parent_array << [parent.name, parent.id]

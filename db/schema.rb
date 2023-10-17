@@ -101,6 +101,9 @@ ActiveRecord::Schema.define(version: 2023_10_11_134804) do
     t.integer "category_id"
     t.integer "store_category_id"
     t.integer "member_id"
+    t.integer "parent_id"
+    t.integer "children_id"
+    t.integer "grandchildren_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

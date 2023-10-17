@@ -8,6 +8,9 @@ class CreateStores < ActiveRecord::Migration[6.1]
       t.integer :category_id
       t.integer :store_category_id
       t.integer :member_id
+      t.integer :parent_id
+      t.integer :children_id
+      t.integer :grandchildren_id
       t.timestamps
 
 
