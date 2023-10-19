@@ -49,7 +49,7 @@ class Store < ApplicationRecord
   end
 
 
-  def like_listed_by?(member)#ユーザidがFavoritesテーブル内に存在（exists?）するか
+  def like_listed_by?(member)#ユーザidがlike_listテーブル内に存在（exists?）するか
     like_lists.exists?(member_id: member.id)
   end
 

@@ -32,9 +32,9 @@ Rails.application.routes.draw do
   resources :members, only: [:show, :edit, :update]
   resources :categories, only: [:index, :create, :edit, :update]
    get 'searche' => 'stores#search'        #カテゴリ検索
+   get 'search_tag' => 'stores#search_tag'     #タグ検索
   resources :stores do
-    resources :comments, only: [:create, :destroy]
-    resource :like_lists, only: [:create, :destroy,]
+    resources :comments, only: [:destroy]
    end
    end
 

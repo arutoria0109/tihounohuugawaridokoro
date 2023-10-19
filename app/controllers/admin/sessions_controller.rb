@@ -28,6 +28,15 @@ protected
   def after_sign_out_path_for(resource)
     new_admin_session_path
   end
+  
+  def reject_user
+    @member = Member.find(params[:id])
+    if @member 
+      if @member.valid_password?(params[:member][:password]) &&  (@member.active_for_authentication? == true)
+        redirect_to new_user_registration_path
+      end
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

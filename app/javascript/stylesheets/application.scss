@@ -1,1 +1,26 @@
 @use '~bootstrap/scss/bootstrap';
+
+
+.box {
+  margin        : auto;                 /* サンプル用 中央寄せ  */
+  margin        : 10px;                 /* サンプル用 中央寄せ  */
+  box-sizing    : border-box;           /* 罫線も含む長さ       */
+  width         : 35%;                 /* BOXの幅              */
+  max-width     : 500px;                /* BOXの最大幅          */
+  height        : 250px;                /* BOXの高さ            */
+  text-align    : center;               /* 文字位置             */
+  color         : #000000;              /* 文字色               */
+  background    : #ffffff;              /* BOXの背景色          */
+  border        : 7px double rgba(127, 0, 127, 0.73);   /* 枠線の指定           */
+}
+
+.p{
+  padding         : 5px;
+}
+
+.flexbox{
+  display:flex;
+  flex-wrap: wrap;
+}
+
+

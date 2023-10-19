@@ -1,0 +1,62 @@
+<h1>投稿詳細</h1>
+
+<table class="table-borderless">
+  <tr>
+    <td>
+      <% if @store.image.attached? %>
+       <%= image_tag @store.image, size: "100x100" %>
+      <% else %>
+       <%= image_tag 'no_image', size: "100x100" %>
+      <% end %>
+    </td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>カテゴリ</td>
+    <td><%= @store.parent.name %>,<%= @store.children.name %>,<%= @store.grandchildren.name %></td>
+  </tr>
+
+  <tr>
+    <td>店名</td>
+    <td><%= @store.shop %></td>
+  </tr>
+
+  <tr>
+    <td>店説明</td>
+    <td><%= @store.description %></td>
+  </tr>
+
+  <tr>
+    <td>最寄り駅</td>
+    <td><%= @store.nearest_station %></td>
+  </tr>
+
+  <tr>
+    <td><%= link_to "編集する", edit_admin_store_path, class:"btn btn-success" %></td>
+    <td><%= link_to 'Destroy', @storedelete, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
+  </tr>
+
+  
+  <tr>
+    <td>
+      <!-- タグリスト -->
+      <% @store_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= tag.name %>
+      <% end %>
+    </td>
+  </tr>
+  
+
+ <tr>
+    <td>コメント件数：<%= @store.comments.count %>
+  <% @store.comments.each do |comment| %>
+    <%= comment.member.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+      <%= link_to "Destroy", admin_store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  <% end %>
+ </td>
+ </tr>
+</table>
+

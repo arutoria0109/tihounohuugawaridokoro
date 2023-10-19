@@ -10,7 +10,15 @@ class Member::MembersController < ApplicationController
   end
 
   def unsubscribe
-
+    @member = current_member
+  end
+  
+  def withdraw
+    @member = current_member
+    @member.update(is_valid: false)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
   end
 
   def update

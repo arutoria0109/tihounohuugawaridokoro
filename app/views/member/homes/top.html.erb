@@ -1,23 +1,29 @@
 <h1>~地方の風変わり所~</h1>
 
-<p>ようこそ地方の風変わり所へ！ここでは他県にあまり知られていないだけで</br>
+<top>ようこそ地方の風変わり所へ！ここでは他県にあまり知られていないだけで</br>
    地方では有名なお店をみんなで共有し、出かける際いつもと違う場所で</br>
    新しい発見があれば思います。ぜひ、皆さんの地方の隠れた名店を教えてください！</br>
-</p>
+</top>
 
- <% @stores.each do |store| %>
-<div class="card item card-list-container col m-0.5 pb-5">
-  <img>
+<% @stores.each do |store| %>
+ 
+ <div class="flexbox">
+ <div class="box">
+   
+  <p>
   <% if store.image.attached? %>
     <%= image_tag store.image, size: "225x200" %>
   <% else %>
     <%= image_tag 'no_image', size: "100x100" %>
   <% end %>
-  </img>
-  <div class="card-body">
-    <h5 class="card-title"><%= store.name %></h5>
-    <p class="card-text"><%= store.description %></p>
-    <%= link_to "投稿内容を表示", store_path(store.id), class: "btn btn-primary" %>
+  </p>
+  
+  <p><%= store.shop %></p>
+ 
+  <p><%= store.description %></p>
+  
+  <%= link_to "投稿内容を表示", store_path(store.id), class: "btn btn-primary" %>
+  
   </div>
-</div>
+  </div>
 <% end %>
