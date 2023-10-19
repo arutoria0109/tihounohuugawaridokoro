@@ -16,10 +16,10 @@
     <td>カテゴリ</td>
     <td><%= @store.parent.name %>,<%= @store.children.name %>,<%= @store.grandchildren.name %></td>
   </tr>
-  
+
   <tr>
     <td>店名</td>
-    <td><%= @store.name %></td>
+    <td><%= @store.shop %></td>
   </tr>
 
   <tr>
@@ -38,6 +38,18 @@
     <td><%= link_to 'Destroy', @store, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
         <% end %>
   </tr>
+
+  
+  <tr>
+    <td>
+      <!-- タグリスト -->
+      <% @store_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+      <% end %>
+    </td>
+  </tr>
+  
 
  <tr>
     <td>コメント件数：<%= @store.comments.count %>

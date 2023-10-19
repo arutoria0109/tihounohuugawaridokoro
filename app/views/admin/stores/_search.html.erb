@@ -1,3 +1,6 @@
+
+<script>
+    //↓ページ読み込みが完了したら
 $(function() {
   function appendOption(category) {
     //変数の宣言
@@ -9,7 +12,7 @@ $(function() {
     let childrenSelectHtml = '';
     childrenSelectHtml = `
       <div id='children-wrapper'>
-        <select id='children-category' class='form-control' name='store[children_id]'>
+        <select id='children-category' class='form-control' name='children_id'>
           <option value='---' data-category='---'>---</option>
           ${insertHTML}
         </select>
@@ -23,7 +26,7 @@ $(function() {
     let grandchildrenSelectHtml = '';
     grandchildrenSelectHtml = `
       <div id='grandchildren-wrapper'>
-        <select id='grandchildren-category' class='form-control' name='store[grandchildren_id]'>
+        <select id='grandchildren-category' class='form-control' name='grandchildren_id'>
           <option value='---' data-category='---'>---</option>
           ${insertHTML}
         </select>
@@ -95,3 +98,37 @@ $(function() {
     }
   });
 });
+
+</script>
+
+<% if flash[:error].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+<div class="col-lg-2 mt-4 p-0">
+  <div class="card headline">
+    <h6 class="card-header text-center ">カテゴリ検索</h6>
+
+
+<div class="search_form">
+   <%= form_with url: searche_path, method: :get, local: true do |f| %>
+      <li class="list-group-item border-0">
+   <%= f.text_field :name, placeholder: "店名を入力" %>
+<div class='form-group category-form'>
+    <select class='form-control parent_id_form' name='parent_id'>
+      <% category_parent_array.each do |category| %>
+          <option value='<%= category[1] %>' data-category='<%= category[1] %>'><%= category[0] %></option>
+      <% end %>
+    </select>
+    <i class='fas fa-chevron-down'></i>
+</div>
+   <%= f.submit "検索", class: "btn btn-primary" %>
+
+   <% end %>
+   </div>
+
+      </li>
+  </div>
+</div>

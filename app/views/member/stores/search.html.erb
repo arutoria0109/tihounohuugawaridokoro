@@ -1,4 +1,5 @@
-<%= render "search" %>
+
+<%= render "search", category_parent_array: @category_parent_array %>
 <table class= "table table-hover table-inverse mx-auto my-3">
  <tr class="p-3 mb-2 text-dark" style="background:pink">
   <th>投稿ID</th>
@@ -15,7 +16,7 @@
  <tr>
    <td><%= store.id %></td>
     <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
-   <td><%= link_to store.name, store_path(store.id), class: "text-dark" %></td>
+   <td><%= link_to store.shop, store_path(store.id), class: "text-dark" %></td>
    <td><%= store.description %></td>
    <td><%= store.nearest_station %></td>
    <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>

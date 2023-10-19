@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_11_134804) do
+ActiveRecord::Schema.define(version: 2023_10_18_085822) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -94,10 +94,21 @@ ActiveRecord::Schema.define(version: 2023_10_11_134804) do
     t.integer "category_id"
   end
 
+  create_table "store_tags", force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id", "tag_id"], name: "index_store_tags_on_store_id_and_tag_id", unique: true
+    t.index ["store_id"], name: "index_store_tags_on_store_id"
+    t.index ["tag_id"], name: "index_store_tags_on_tag_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "description"
     t.string "nearest_station"
     t.string "name"
+    t.string "shop"
     t.integer "category_id"
     t.integer "store_category_id"
     t.integer "member_id"
@@ -108,6 +119,15 @@ ActiveRecord::Schema.define(version: 2023_10_11_134804) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "store_tags", "stores"
+  add_foreign_key "store_tags", "tags"
 end

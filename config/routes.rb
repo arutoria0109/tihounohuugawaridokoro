@@ -14,7 +14,8 @@ Rails.application.routes.draw do
    patch "/members/withdraw" => "members#withdraw"
    get '/get_category/children', to: 'stores#get_category_children', defaults: { format: 'json' }
    get '/get_category/grandchildren', to: 'stores#get_category_grandchildren', defaults: { format: 'json' }
-   get 'searche' => 'stores#search'
+   get 'searche' => 'stores#search'        #カテゴリ検索
+   get 'search_tag' => 'stores#search_tag'     #タグ検索
    get "/stores/like_list" => "stores#like"         #いいねした投稿を表示させる場所
    resources :stores do
     resources :comments, only: [:create, :destroy]
@@ -30,6 +31,11 @@ Rails.application.routes.draw do
   get "/" => "members#index"
   resources :members, only: [:show, :edit, :update]
   resources :categories, only: [:index, :create, :edit, :update]
+   get 'searche' => 'stores#search'        #カテゴリ検索
+  resources :stores do
+    resources :comments, only: [:create, :destroy]
+    resource :like_lists, only: [:create, :destroy,]
+   end
    end
 
 

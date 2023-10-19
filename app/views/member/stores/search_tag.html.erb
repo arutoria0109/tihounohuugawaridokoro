@@ -1,8 +1,17 @@
-
+<h2>タグが<%=@tag.name%>の投稿一覧</h2>
 <%= render "search", category_parent_array: @category_parent_array %>
 
-<table class= "table table-hover table-inverse mx-auto my-3">
- <tr class="p-3 mb-2 text-dark" style="background:lightgreen">
+  <!--タグリスト-->
+ <% @tag_list.each do |list| %>
+  <% unless list.stores.count.zero? %>
+  <i class="fa-sharp ha-solid fa-tag"></i>
+  <%= link_to list.name,search_tag_path(tag_id: list.id) %>
+  <%="(#{list.stores.count})" %>
+  <% end %>
+<% end %>
+
+  <table class= "table table-hover table-inverse mx-auto my-3">
+ <tr class="p-3 mb-2 text-dark" style="background:lightblue">
   <th>投稿ID</th>
   <th>〇〇地方, 都道府県, カテゴリ</th>
   <th>店舗名</th>
@@ -12,9 +21,9 @@
   <th>いいね数</th>
  </tr>
 
+  <% @stores.each do |store|%>
 
-<% @liked_stores.each do |store| %>
- <tr>
+  <tr>
    <td><%= store.id %></td>
     <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
    <td><%= link_to store.shop, store_path(store.id), class: "text-dark" %></td>

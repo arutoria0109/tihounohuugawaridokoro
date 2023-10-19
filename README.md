@@ -1,24 +1,40 @@
-# README
+# ~地方の風変わり所~
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+### サイトテーマ
+地方の人しか知らない飲食店や温泉などをそれぞれが投稿することによって
+ユーザが出かけたときに普通じゃ探せない場所が閲覧できるコミュニティサイト
 
-* Ruby version
 
-* System dependencies
+### テーマを選んだ理由
+他県のあまり知られていない温泉や飲食店など、調べてもあまり出てこない場所が
+あると思います。実際に現地に行かないとわからないような場所にいい所なども数多くあり
+そこを投稿してもらい広めることで、いつもの旅行じゃ探せないような隠れたいいお店に
+巡り合えると思います。
 
-* Configuration
 
-* Database creation
+### ターゲットユーザ
+おすすめの店などを調べたいすべてのユーザー
+地方で有名な店などのオンラインで見つからない店
 
-* Database initialization
 
-* How to run the test suite
+### 主な利用シーン
+いつもと違うところに出かけたい時
+旅行時におすすめのところに行きたい時
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## 設計書
+後ほど作成予定
 
-* ...
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+-使用検討中
+-

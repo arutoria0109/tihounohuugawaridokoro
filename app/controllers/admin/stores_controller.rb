@@ -1,39 +1,6 @@
-class Member::StoresController < ApplicationController
-
-  def new
-    @store = Store.new
-    @category_parent_array = Category.category_parent_array_create
-  end
-
-  def create
-    @member = current_member
-    @store = @member.stores.build(store_params)
-    tag_list = params[:store][:name].split(',')
-    if @store.save
-    #maltilevel_category_createメソッドに引数を4つ渡して実行
-    StoreCategory.maltilevel_category_create(
-      @store,
-        params[:parent_id],
-         params[:children_id],
-          params[:grandchildren_id]
-          )
-    @store.save_tags(tag_list)
-    redirect_to store_path(@store), notice:"投稿完了！"
-    else
-    flash[:error] = @store.errors.full_messages.join(', ')
-    @stores = Store.all
-    #category_parent_array_createメソッドの戻り値として受け取った配列をインスタンス変数に代入
-    @category_parent_array = Category.category_parent_array_create
-    render :new
-    end
-  end
-
+class Admin::StoresController < ApplicationController
+  
   def index
-    likelist_store_ids = LikeList.pluck(:store_id)  #いいねされた投稿のidを取得
-    all_store_ids = Store.ids   #投稿のidのみを取得する
-    #いいねがある投稿だけを降順で並び替える('count(store_id) desc')まで・←store_idに代入・+すべての投稿idからいいねされている投稿を引いた投稿を足す
-    @all_ranks = Store.find(LikeList.group(:store_id).order('count(store_id) desc').pluck(:store_id) + (all_store_ids - likelist_store_ids))
-
     @stores = Store.all
     @category_parent_array = Category.category_parent_array_create
     @tag_list = Tag.all
@@ -51,16 +18,9 @@ class Member::StoresController < ApplicationController
   def show
     @store = Store.find(params[:id])
     @comment = Comment.new
-    @member = current_member
     @category_parent_array = Category.category_parent_array_create
     @tag_list = @store.tags.pluck(:name).join(',')
     @store_tags = @store.tags
-  end
-
-  def like
-    #ユーザがいいねした投稿を取得↓
-    @liked_stores = current_member.liked_stores
-    @category_parent_array = Category.category_parent_array_create
   end
 
 
@@ -89,7 +49,6 @@ class Member::StoresController < ApplicationController
   def search
       @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:name])
       @category_parent_array = Category.category_parent_array_create
-      @tag_list = Tag.all
   end
 
   def search_tag

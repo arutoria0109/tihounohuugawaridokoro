@@ -5,12 +5,19 @@
    新しい発見があれば思います。ぜひ、皆さんの地方の隠れた名店を教えてください！</br>
 </p>
 
-<div class="card" style="width: 18rem;">
-  <svg class="bd-placeholder-img card-img-top" width="50%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+ <% @stores.each do |store| %>
+<div class="card item card-list-container col m-0.5 pb-5">
+  <img>
+  <% if store.image.attached? %>
+    <%= image_tag store.image, size: "225x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+  <% end %>
+  </img>
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title"><%= store.name %></h5>
+    <p class="card-text"><%= store.description %></p>
+    <%= link_to "投稿内容を表示", store_path(store.id), class: "btn btn-primary" %>
   </div>
 </div>
-
+<% end %>

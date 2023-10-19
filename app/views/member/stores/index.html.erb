@@ -1,4 +1,14 @@
-<%= render "search" %>
+<%= render "search", category_parent_array: @category_parent_array %>
+
+<!--タグリスト-->
+<% @tag_list.each do |list| %>
+  <% unless list.stores.count.zero? %>
+  <i class="fa-sharp ha-solid fa-tag"></i>
+  <%= link_to list.name,search_tag_path(tag_id: list.id) %>
+  <%="(#{list.stores.count})" %>
+  <% end %>
+<% end %>
+
 <table class= "table table-hover table-inverse mx-auto my-3">
  <tr class="p-3 mb-2 text-dark" style="background:pink">
   <th>投稿ID</th>
@@ -10,12 +20,12 @@
   <th>いいね数</th>
  </tr>
 
- <% @stores.each do |store| %>
+ <% @all_ranks.each do |store| %>
 
  <tr>
    <td><%= store.id %></td>
     <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
-   <td><%= link_to store.name, store_path(store.id), class: "text-dark" %></td>
+   <td><%= link_to store.shop, store_path(store.id), class: "text-dark" %></td>
    <td><%= store.description %></td>
    <td><%= store.nearest_station %></td>
    <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
@@ -34,6 +44,6 @@
   <% end %>
 
  </tr>
- <% end %>
+  <% end %>
  </table>
 
