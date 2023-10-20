@@ -34,7 +34,7 @@
 
   <tr>
     <td><%= link_to "編集する", edit_admin_store_path, class:"btn btn-success" %></td>
-    <td><%= link_to 'Destroy', @storedelete, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
+    <td><%= link_to '投稿削除', @storedelete, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
   </tr>
 
   
@@ -54,7 +54,7 @@
   <% @store.comments.each do |comment| %>
     <%= comment.member.name %>
     <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <%= link_to "Destroy", admin_store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= link_to "削除", admin_store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
   <% end %>
  </td>
  </tr>

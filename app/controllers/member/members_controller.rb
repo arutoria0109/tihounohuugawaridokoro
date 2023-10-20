@@ -12,7 +12,7 @@ class Member::MembersController < ApplicationController
   def unsubscribe
     @member = current_member
   end
-  
+
   def withdraw
     @member = current_member
     @member.update(is_valid: false)

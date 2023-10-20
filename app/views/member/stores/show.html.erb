@@ -33,13 +33,12 @@
   </tr>
 
   <tr>
-    <td><%= link_to "編集する", edit_store_path, class:"btn btn-success" %></td>
         <% if @store.member == current_member %>
-    <td><%= link_to 'Destroy', @store, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
+    <td><%= link_to "編集する", edit_store_path, class:"btn btn-success" %></td>
+    <td><%= link_to '投稿削除', @store, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
         <% end %>
   </tr>
 
-  
   <tr>
     <td>
       <!-- タグリスト -->
@@ -49,15 +48,14 @@
       <% end %>
     </td>
   </tr>
-  
 
  <tr>
     <td>コメント件数：<%= @store.comments.count %>
   <% @store.comments.each do |comment| %>
-    <%= comment.member.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <%= comment.member.name %>/
+    <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
     <% if comment.member == current_member %>
-      <%= link_to "Destroy", store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <%= link_to "削除", store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
     <% end %>
   <% end %>
  </td>

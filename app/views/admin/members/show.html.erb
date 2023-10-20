@@ -1,4 +1,4 @@
-<h1><%= @member.name %>会員詳細</h1>
+<h1><%= @member.name %>の会員詳細</h1>
 
 <table class="table table-borderless">
   <tr>
@@ -17,7 +17,18 @@
   </tr>
 
   <tr>
+    <th>退会ステータス</th>
+      <% if @member.is_valid %>
+        <td>有効</td>
+      <% else %>
+        <td>退会済</td>
+      <% end %>
+  </tr>
+
+  <tr>
     <th><%= link_to "編集する", edit_admin_member_path, class: 'btn btn-primary' %></th>
-    <td></td>
+        <% unless @member.is_valid %>
+    <td><%= link_to 'アカウント削除', admin_member_path, class: 'btn btn-danger', method: :delete %></td>
+        <% end %>
   </tr>
 </table>

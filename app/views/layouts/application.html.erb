@@ -61,12 +61,21 @@
   <% else %>
 
   <ul class="ml-auto d-flex">
+        
+    <li>
+    <%= link_to "ゲストログイン", class: "btn btn-outline-dark" %>
+    </li>
+    
     <li class="nav-link text-light ">
     <%= link_to "新規登録", new_member_registration_path, class: "btn btn-outline-dark" %>
     </li>
 
     <li class="nav-link text-light ">
     <%= link_to "ログイン", new_member_session_path, class: "btn btn-outline-dark" %>
+    </li>
+
+    <li class="nav-link text-light ">
+    <%= link_to "投稿一覧",stores_path, class: "btn btn-outline-dark" %>
     </li>
    </ul>
   <% end %>

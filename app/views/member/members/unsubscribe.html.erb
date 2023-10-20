@@ -1,5 +1,9 @@
 <h1>本当に退会しますか？</h1>
 
+<p>退会しますと同じメールアドレスでログインできなくなります。</br>
+   また投稿内容も削除されます。宜しければ退会をクリックしてください。
+</p>
+
 <div>
 <%= link_to "退会",members_withdraw_path, method: :patch, data: {confilm: "本当に退会しますか？"} %>
 <%= link_to "退会しない", root_path %>

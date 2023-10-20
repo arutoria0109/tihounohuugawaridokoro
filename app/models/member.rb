@@ -9,9 +9,9 @@ class Member < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :liked_stores, through: :like_lists, source: :store
   #多対多の関係性を持ついいねのモデルと投稿のモデルを使用する↑
-  
+
   def active_for_authentication?
-  super && (is_valid == true)
+    super && (is_valid == true)
   end
 
 end

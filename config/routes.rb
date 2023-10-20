@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
    namespace :admin do
   get "/" => "members#index"
-  resources :members, only: [:show, :edit, :update]
+  resources :members, only: [:show, :edit, :update, :destroy]
   resources :categories, only: [:index, :create, :edit, :update]
    get 'searche' => 'stores#search'        #カテゴリ検索
    get 'search_tag' => 'stores#search_tag'     #タグ検索
