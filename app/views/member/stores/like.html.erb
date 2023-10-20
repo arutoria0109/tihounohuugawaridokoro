@@ -11,7 +11,21 @@
   <th>コメント</th>
   <th>いいね数</th>
  </tr>
+ 
+<% if @member.email == "guest@example.com" then %>
+<tr>
+ <th></th>
+ <th></th>
+ <th></th>
+ <th>新規投稿するといいねした場所を保存できます</th>
+ <th></th>
+ <th></th>
+ <th></th>
 
+</tr>
+
+
+<% else %>
 
 <% @liked_stores.each do |store| %>
  <tr>
@@ -34,7 +48,7 @@
       <% end %>
     </td>
   <% end %>
-
+  <% end %>
  </tr>
  <% end %>
  </table>

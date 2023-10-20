@@ -12,7 +12,9 @@
     </tr>
     
     <tr>
+        <% unless @member.email == "guest@example.com" then %>
         <th><%= link_to "編集する", members_information_edit_path %></th>
         <td></td>
+        <% end %>
     </tr>
 </table>

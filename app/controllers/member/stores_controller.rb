@@ -3,6 +3,7 @@ class Member::StoresController < ApplicationController
   def new
     @store = Store.new
     @category_parent_array = Category.category_parent_array_create
+    @member = current_member
   end
 
   def create
@@ -37,6 +38,7 @@ class Member::StoresController < ApplicationController
     @stores = Store.all
     @category_parent_array = Category.category_parent_array_create
     @tag_list = Tag.all
+    @member = current_member
   end
 
   def get_category_children
@@ -61,6 +63,7 @@ class Member::StoresController < ApplicationController
     #ユーザがいいねした投稿を取得↓
     @liked_stores = current_member.liked_stores
     @category_parent_array = Category.category_parent_array_create
+    @member = current_member
   end
 
 

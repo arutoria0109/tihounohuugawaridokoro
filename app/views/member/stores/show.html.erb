@@ -62,13 +62,31 @@
  </tr>
 
 <tr>
+  <% if @member.email == "guest@example.com" then %>
+  <td>
+    会員登録するとコメント・いいね可能
+  </td>
+  <% else %>
   <td>
   <%= form_with(model: [@store, @comment], local: true) do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメント入力欄" %>
     <%= f.submit "送信する" %>
   <% end %>
   </td>
-
+      <% if @store.like_listed_by?(current_member) %>
+    <td>
+      <%= link_to store_like_lists_path(@store), class: "text-danger", method: :delete do %>
+        ♥<%= @store.like_lists.count %> いいね
+      <% end %>
+    </td>
+    <% else %>
+    <td>
+      <%= link_to store_like_lists_path(@store), class: "text-dark", method: :post do %>
+        ♡<%= @store.like_lists.count %> いいね
+      <% end %>
+    </td>
+   <% end %>
+     <% end %>
 </tr>
 
 

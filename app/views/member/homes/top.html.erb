@@ -5,25 +5,3 @@
    新しい発見があれば思います。ぜひ、皆さんの地方の隠れた名店を教えてください！</br>
 </top>
 
-<% @stores.each do |store| %>
- 
- <div class="flexbox">
- <div class="box">
-   
-  <p>
-  <% if store.image.attached? %>
-    <%= image_tag store.image, size: "225x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "100x100" %>
-  <% end %>
-  </p>
-  
-  <p><%= store.shop %></p>
- 
-  <p><%= store.description %></p>
-  
-  <%= link_to "投稿内容を表示", store_path(store.id), class: "btn btn-primary" %>
-  
-  </div>
-  </div>
-<% end %>
