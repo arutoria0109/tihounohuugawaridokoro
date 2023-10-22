@@ -1,10 +1,15 @@
-<h1>投稿詳細</h1>
 
-<table class="table-borderless">
+<div class="container">
+   <h1>投稿詳細</h1>
+  <div class="row">
+
+<div class="col-lg-5">
+
+<table class="tableArea2">
   <tr>
     <td>
       <% if @store.image.attached? %>
-       <%= image_tag @store.image, size: "100x100" %>
+       <%= image_tag @store.image, size: "200x200" %>
       <% else %>
        <%= image_tag 'no_image', size: "100x100" %>
       <% end %>
@@ -13,22 +18,22 @@
   </tr>
 
   <tr>
-    <td>カテゴリ</td>
+    <th>カテゴリ</th>
     <td><%= @store.parent.name %>,<%= @store.children.name %>,<%= @store.grandchildren.name %></td>
   </tr>
 
   <tr>
-    <td>店名</td>
+    <th>店名</th>
     <td><%= @store.shop %></td>
   </tr>
 
   <tr>
-    <td>店説明</td>
+    <th>店説明</th>
     <td><%= @store.description %></td>
   </tr>
 
   <tr>
-    <td>最寄り駅</td>
+    <th>最寄り駅</th>
     <td><%= @store.nearest_station %></td>
   </tr>
 
@@ -40,36 +45,62 @@
   </tr>
 
   <tr>
-    <td>
-      <!-- タグリスト -->
+    <th>
+      タグ
+      </th>
       <% @store_tags.each do |tag| %>
+      <td>
       <i class="fa-sharp fa-solid fa-tag"></i>
         <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+    </td>
       <% end %>
+  </tr>
+  <tr>
+    <th>
+      コメント件数
+    </th>
+    <td>
+      ：<%= @store.comments.count %>件
     </td>
   </tr>
 
+  </table>
+
+  </div>
+
+
+<div class="col-lg-7">
+   <div class= "textbox">
+  <table>
  <tr>
-    <td>コメント件数：<%= @store.comments.count %>
   <% @store.comments.each do |comment| %>
-    <%= comment.member.name %>/
+    <td>
+    <%= comment.member.name %></br></br>
+    <div class="balloon">
     <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
-    <% if comment.member == current_member %>
+     <% if comment.member == current_member %>
       <%= link_to "削除", store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </div>
+    </td>
     <% end %>
+    </tr>
   <% end %>
- </td>
- </tr>
+  </div>
+
 
 <tr>
   <% if @member.email == "guest@example.com" then %>
+    <div class= "textarea">
   <td>
     会員登録するとコメント・いいね可能
   </td>
+  </div>
   <% else %>
   <td>
+      <div class= "textarea">
+
   <%= form_with(model: [@store, @comment], local: true) do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメント入力欄" %>
+    <%= f.text_area :comment, placeholder: "コメント入力欄" %>
     <%= f.submit "送信する" %>
   <% end %>
   </td>
@@ -86,9 +117,13 @@
       <% end %>
     </td>
    <% end %>
+   </div>
      <% end %>
+       
 </tr>
 
 
 </table>
-
+</div>
+</div>
+</div>

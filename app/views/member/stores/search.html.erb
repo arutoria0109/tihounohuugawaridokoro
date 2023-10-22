@@ -1,17 +1,31 @@
-
+<div class="container-fould">
+  <div class="row">
+<div class="col-lg-3">
 <%= render "search", category_parent_array: @category_parent_array %>
-
+<!--タグリスト-->
+<div class="box">
+  <h6>タグ検索</h6>
 <% @tag_list.each do |list| %>
-  <% unless list.stores.count.zero? %>
-  <i class="fa-sharp ha-solid fa-tag"></i>
-  <%= link_to list.name,search_tag_path(tag_id: list.id) %>
-  <%="(#{list.stores.count})" %>
-  <% end %>
+<table>
+  <tr>
+      <% unless list.stores.count.zero? %>
+    　<i class="fa-sharp fa-solid fa-tag"></i>
+      <%= link_to truncate(list.name, length: 6), search_tag_path(tag_id: list.id), class: "text-dark" %>
+      <%="(#{list.stores.count})" %>
+      <% end %>
 <% end %>
+  </tr>
+<%= paginate @stores %>
+</table>
+</div>
+</div>
 
-<table class= "table table-hover table-inverse mx-auto my-3">
+<div class="col-lg-9">
+    <h2>検索結果</h2>
+<div class="tbody">
+<table class= "table table-hover table-inverse mx-auto">
  <tr class="p-3 mb-2 text-dark" style="background:pink">
-  <th>投稿ID</th>
+  <th>投稿No</th>
   <th>〇〇地方, 都道府県, カテゴリ</th>
   <th>店舗名</th>
   <th>説明文</th>
@@ -25,8 +39,8 @@
  <tr>
    <td><%= store.id %></td>
     <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
-   <td><%= link_to store.shop, store_path(store.id), class: "text-dark" %></td>
-   <td><%= store.description %></td>
+   <td><%= link_to truncate(store.shop, length: 10), store_path(store.id), class: "text-dark" %></td>
+   <td><%= truncate(store.description, length: 20) %></td>
    <td><%= store.nearest_station %></td>
    <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
     <td>
@@ -35,5 +49,7 @@
  </tr>
  <% end %>
  </table>
-<%= paginate @stores %>
-
+</div>
+</div>
+</div>
+</div>

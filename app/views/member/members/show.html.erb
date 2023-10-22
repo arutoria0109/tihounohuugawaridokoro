@@ -5,12 +5,12 @@
         <th>お名前</th>
         <td><%= @member.name %></td>
     </tr>
-    
+
     <tr>
         <th>メールアドレス</th>
         <td><%= @member.email %></td>
     </tr>
-    
+
     <tr>
         <% unless @member.email == "guest@example.com" then %>
         <th><%= link_to "編集する", members_information_edit_path %></th>

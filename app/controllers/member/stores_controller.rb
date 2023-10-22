@@ -35,7 +35,7 @@ class Member::StoresController < ApplicationController
     #いいねがある投稿だけを降順で並び替える('count(store_id) desc')まで・←store_idに代入・+すべての投稿idからいいねされている投稿を引いた投稿を足す
     @all_ranks = Kaminari.paginate_array(Store.find(LikeList.group(:store_id).order('count(store_id) desc').pluck(:store_id) + (all_store_ids - likelist_store_ids))).page(params[:page]).per(10)
     @category_parent_array = Category.category_parent_array_create
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(12)
     @member = current_member
   end
 
@@ -59,7 +59,7 @@ class Member::StoresController < ApplicationController
 
   def like
     #ユーザがいいねした投稿を取得↓
-    @liked_stores = current_member.liked_stores.page(params[:page]).per(10)
+    @liked_stores = current_member.liked_stores
     @category_parent_array = Category.category_parent_array_create
     @member = current_member
   end
@@ -90,13 +90,13 @@ class Member::StoresController < ApplicationController
   def search
     @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:name]).page(params[:page]).per(10)
     @category_parent_array = Category.category_parent_array_create
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(8)
   end
 
   def search_tag
     @category_parent_array = Category.category_parent_array_create
     #検索結果画面のタグ一覧表示
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(8)
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索に出たタグの投稿表示
