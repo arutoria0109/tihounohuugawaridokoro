@@ -1,26 +1,23 @@
 @use '~bootstrap/scss/bootstrap';
 
 
-.box {
-  margin        : auto;                 /* サンプル用 中央寄せ  */
-  margin        : 10px;                 /* サンプル用 中央寄せ  */
-  box-sizing    : border-box;           /* 罫線も含む長さ       */
-  width         : 35%;                 /* BOXの幅              */
-  max-width     : 500px;                /* BOXの最大幅          */
-  height        : 250px;                /* BOXの高さ            */
-  text-align    : center;               /* 文字位置             */
-  color         : #000000;              /* 文字色               */
-  background    : #ffffff;              /* BOXの背景色          */
-  border        : 7px double rgba(127, 0, 127, 0.73);   /* 枠線の指定           */
+ body {
+   background-image: url("../images/haikei.jpg");
+   background-repeat     : no-repeat; /*背景画像を繰り返さないよう指定*/
+ }
+/* --- 文字BOX(子要素) ------------------ */
+.over {
+  position   : absolute;                   /* 親要素からの絶対位置 */
+  box-sizing : border-box;
+  white-space: nowrap;                     /* 折返しなし */
+  display    : inline-block;               /* 文字囲みのBOXにする */
+  color      : rgba(0, 0, 0, 0.90);    /* 文字色（透明度） */
+  background : rgba(255, 255, 255, 0.41);  /* 背景色（透明度） */
+  top        : 67%;                        /* 親要素からの上位置 */
+  left       : 50%;                        /* 親要素からの左位置 */
+  transform  : translate(-50%, -67%);      /* 文字BOXの位置ずらし */
+  padding    : 10px;                       /* BOX内の余白 */
+  font-size  : 30pt;                       /* 文字サイズ */
+  font-weight: bold;                       /* 太字 */
+  line-height: 1em;                        /* 1行の高さ */
 }
-
-.p{
-  padding         : 5px;
-}
-
-.flexbox{
-  display:flex;
-  flex-wrap: wrap;
-}
-
-

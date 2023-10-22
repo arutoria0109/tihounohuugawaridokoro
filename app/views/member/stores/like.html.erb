@@ -11,13 +11,13 @@
   <th>コメント</th>
   <th>いいね数</th>
  </tr>
- 
+
 <% if @member.email == "guest@example.com" then %>
 <tr>
  <th></th>
  <th></th>
  <th></th>
- <th>新規投稿するといいねした場所を保存できます</th>
+ <th>会員登録するといいねした場所を保存できます</th>
  <th></th>
  <th></th>
  <th></th>
@@ -52,3 +52,5 @@
  </tr>
  <% end %>
  </table>
+ <%= paginate @liked_stores %>
+

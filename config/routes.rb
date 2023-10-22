@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
    scope module: :member do
    root "homes#top"
+   get "/about" => "homes#about"
    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
-   get "/members/top" => "members#top"
    get "/members/unsubscribe" => "members#unsubscribe"
    get "/members/mypage" => "members#show"
    get "/members/information/edit" => "members#edit"

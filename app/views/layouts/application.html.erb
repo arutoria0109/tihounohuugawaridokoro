@@ -24,6 +24,10 @@
 <% if member_signed_in? %>
   <ul class="ml-auto d-flex">
     <li class="nav-link text-light ">
+    <%= link_to "About",about_path, class: "btn btn-outline-dark" %>
+    </li>
+
+    <li class="nav-link text-light ">
     <%= link_to "マイページ",members_mypage_path, class: "btn btn-outline-dark" %>
     </li>
 
@@ -47,6 +51,10 @@
   <% elsif admin_signed_in? %>
   <ul class="ml-auto d-flex">
     <li class="nav-link text-light ">
+    <%= link_to "About",about_path, class: "btn btn-outline-dark" %>
+    </li>
+
+    <li class="nav-link text-light ">
     <%= link_to "投稿一覧",admin_stores_path, class: "btn btn-outline-dark" %>
     </li>
 
@@ -61,21 +69,20 @@
   <% else %>
 
   <ul class="ml-auto d-flex">
-        
+    <li class="nav-link text-light ">
+    <%= link_to "About",about_path, class: "btn btn-outline-dark" %>
+    </li>
+
     <li class="nav-link text-light ">
     <%= link_to "ゲストログイン", homes_guest_sign_in_path, class: "btn btn-outline-dark", method: :post %>
     </li>
-    
+
     <li class="nav-link text-light ">
     <%= link_to "新規登録", new_member_registration_path, class: "btn btn-outline-dark" %>
     </li>
 
     <li class="nav-link text-light ">
     <%= link_to "ログイン", new_member_session_path, class: "btn btn-outline-dark" %>
-    </li>
-
-    <li class="nav-link text-light ">
-    <%= link_to "投稿一覧",stores_path, class: "btn btn-outline-dark" %>
     </li>
    </ul>
   <% end %>
@@ -91,7 +98,7 @@
         <div class="row no-gutters justify-content-center">
 
           <div class="col-auto text-center pt-1">
-            <%= image_tag "", alt: "LOGO", size: "75x50" %>
+            <%= image_tag "back.jpg", alt: "LOGO", size: "75x50" %>
           </div>
 
           <div class="col-auto text-center pt-3">

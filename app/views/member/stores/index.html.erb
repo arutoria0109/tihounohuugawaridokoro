@@ -1,5 +1,5 @@
-<%= render "search", category_parent_array: @category_parent_array %>
 
+<%= render "search", category_parent_array: @category_parent_array %>
 <!--タグリスト-->
 <% @tag_list.each do |list| %>
   <% unless list.stores.count.zero? %>
@@ -8,6 +8,7 @@
   <%="(#{list.stores.count})" %>
   <% end %>
 <% end %>
+
 
 <table class= "table table-hover table-inverse mx-auto my-3">
  <tr class="p-3 mb-2 text-dark" style="background:pink">
@@ -25,8 +26,8 @@
  <tr>
    <td><%= store.id %></td>
     <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
-   <td><%= link_to store.shop, store_path(store.id), class: "text-dark" %></td>
-   <td><%= store.description %></td>
+   <td><%= link_to truncate(store.shop, length: 10), store_path(store.id), class: "text-dark" %></td>
+   <td><%= truncate(store.description, length: 20) %></td>
    <td><%= store.nearest_station %></td>
    <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
 
@@ -50,4 +51,8 @@
  </tr>
   <% end %>
  </table>
+
+
+<%= paginate @all_ranks %>
+
 
