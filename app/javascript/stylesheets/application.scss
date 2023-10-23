@@ -27,7 +27,7 @@
   line-height: 1em;                        /* 1行の高さ */
 }
 
-.box {
+.tagbox {
   margin        : 10px;                 /* サンプル用 中央寄せ  */
   box-sizing    : border-box;           /* 罫線も含む長さ       */
   width         : 100%;                 /* BOXの幅              */
@@ -93,13 +93,13 @@
   font-size      : 12pt;              /* 文字サイズ */
 }
  /* --- ヘッダーのスタイル指定 ------------------- */
-.tableArea th {
+.tableArea2 th {
   text-align    : left;              /* 文字位置   */
   font-weight   : bold;              /* 太文字     */
   padding       : 0px 0px;           /* 余白       */
 }
  /* --- 明細のスタイル指定 ----------------------- */
-.tableArea td {
+.tableArea2 td {
   text-align    : left;              /* 文字位置   */
   padding       : 0px 0px;           /* 余白       */
 }
@@ -114,4 +114,26 @@
   background    : #ffcc99;              /* BOXの背景色          */
   border-top    : 8px solid #7f4600;   /* 枠線の指定（上）     */
   border-radius : 1px;                  /* 角丸の指定           */
+}
+
+.tableedit {
+  width          : 100%;             /* 100%幅     */
+  border-collapse: collapse;         /* 境界線結合 */
+  border-spacing : 0;                /* 罫線間余白 */
+  font-size      : 9pt;              /* 文字サイズ */
+}
+ /* --- ヘッダーのスタイル指定 ------------------- */
+.tableedit th {
+  text-align    : left;              /* 文字位置   */
+  font-weight   : bold;              /* 太文字     */
+  padding       : 16px 0 16px 16px;           /* 余白       */
+  font-size     : 16px     ;
+}
+ /* --- 明細のスタイル指定 ----------------------- */
+.tableedit td {
+  text-align    : left;              /* 文字位置   */
+  font-weight   : bold;              /* 太文字     */
+  padding       : 16px 16px;           /* 余白       */
+  font-size     : 15px     ;
+
 }

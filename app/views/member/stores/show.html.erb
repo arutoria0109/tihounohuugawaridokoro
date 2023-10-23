@@ -9,7 +9,7 @@
   <tr>
     <td>
       <% if @store.image.attached? %>
-       <%= image_tag @store.image, size: "200x200" %>
+       <%= image_tag @store.image, size: "210x140" %>
       <% else %>
        <%= image_tag 'no_image', size: "100x100" %>
       <% end %>
@@ -48,12 +48,13 @@
     <th>
       タグ
       </th>
-      <% @store_tags.each do |tag| %>
+      
       <td>
+        <% @store_tags.each do |tag| %>
       <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+        <%= tag.name %>
+         <% end %>
     </td>
-      <% end %>
   </tr>
   <tr>
     <th>
@@ -119,7 +120,7 @@
    <% end %>
    </div>
      <% end %>
-       
+
 </tr>
 
 

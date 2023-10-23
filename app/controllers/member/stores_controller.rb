@@ -59,7 +59,7 @@ class Member::StoresController < ApplicationController
 
   def like
     #ユーザがいいねした投稿を取得↓
-    @liked_stores = current_member.liked_stores
+    @liked_stores = current_member.liked_stores.page(params[:page]).per(10)
     @category_parent_array = Category.category_parent_array_create
     @member = current_member
   end

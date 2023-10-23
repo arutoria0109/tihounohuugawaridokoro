@@ -4,7 +4,7 @@
 <%= render "search", category_parent_array: @category_parent_array %>
 
   <!--タグリスト-->
-<div class="box">
+<div class="tagbox">
   <h6>タグ検索</h6>
 <% @tag_list.each do |list| %>
 <table>
@@ -16,7 +16,6 @@
       <% end %>
 <% end %>
   </tr>
-<%= paginate @stores %>
 </table>
 </div>
 </div>
@@ -50,6 +49,15 @@
 
  </tr>
  <% end %>
+  <tr>
+   <td></td>
+      <td></td>
+   <td></td>
+<td><%= paginate @stores %></td>
+   <td></td>
+   <td></td>
+   <td></td>
+ </tr>
  </table>
   </div>
   </div>
