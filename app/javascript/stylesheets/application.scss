@@ -74,14 +74,17 @@
 
 
 .textbox {
+  overflow-x    : hidden;
+	overflow-y    : scroll;
+	padding       : 25px;
+	height        : 500px;
   margin        : auto;                 /* サンプル用 中央寄せ  */
   box-sizing    : border-box;           /* 罫線も含む長さ       */
-  width         : 82%;                 /* BOXの幅              */
+  width         : 95%;                 /* BOXの幅              */
 
   background    : #ffcc99;              /* BOXの背景色          */
   border        : 10px inset #7f4600;   /* 枠線の指定           */
   border-radius : 13px;                  /* 角丸の指定           */
-  box-shadow    : 0 0 0 11px #ffcc99;   /* 影を利用した外余白   */
 }
 
 .tableArea2 {
@@ -105,15 +108,17 @@
 }
 
 .textarea {
+	padding       : 25px;
+	height        : 100px;
   margin        : auto;                 /* サンプル用 中央寄せ  */
   box-sizing    : border-box;           /* 罫線も含む長さ       */
-  width         : 125%;                 /* BOXの幅              */
-  max-width     : 500px;                /* BOXの最大幅          */
-  padding       : 15px;                 /* 文字の位置合わせ     */
+  width         : 95%;                 /* BOXの幅              */
 
   background    : #ffcc99;              /* BOXの背景色          */
-  border-top    : 8px solid #7f4600;   /* 枠線の指定（上）     */
-  border-radius : 1px;                  /* 角丸の指定           */
+  border-right  : 10px inset  #7f4600;   /* 枠線の指定           */
+  border-bottom : 10px inset  #7f4600;   /* 枠線の指定           */
+  border-left   : 10px inset  #7f4600;   /* 枠線の指定           */
+  border-radius : 5px;                  /* 角丸の指定           */
 }
 
 .tableedit {

@@ -48,7 +48,7 @@
     <th>
       タグ
       </th>
-      
+
       <td>
         <% @store_tags.each do |tag| %>
       <i class="fa-sharp fa-solid fa-tag"></i>
@@ -86,25 +86,33 @@
     <% end %>
     </tr>
   <% end %>
+  </table>
   </div>
 
 
+
+
+<div class="textarea">
+  <table>
 <tr>
   <% if @member.email == "guest@example.com" then %>
-    <div class= "textarea">
   <td>
     会員登録するとコメント・いいね可能
   </td>
-  </div>
+</tr>
   <% else %>
-  <td>
-      <div class= "textarea">
 
+<tr>
   <%= form_with(model: [@store, @comment], local: true) do |f| %>
-    <%= f.text_area :comment, placeholder: "コメント入力欄" %>
+  <td>
+    <%= f.text_area :comment, placeholder: "コメント入力欄", class: 'form-control'%>
+      </td>
+
+  <td>
     <%= f.submit "送信する" %>
+      </td>
   <% end %>
-  </td>
+
       <% if @store.like_listed_by?(current_member) %>
     <td>
       <%= link_to store_like_lists_path(@store), class: "text-danger", method: :delete do %>
@@ -118,13 +126,19 @@
       <% end %>
     </td>
    <% end %>
-   </div>
      <% end %>
-
 </tr>
-
-
+</div>
 </table>
+
+
+
+
+
+
+
+
+
 </div>
 </div>
 </div>

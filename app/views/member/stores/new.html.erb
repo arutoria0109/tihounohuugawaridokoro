@@ -1,50 +1,72 @@
 <%= javascript_pack_tag 'category_form', 'data-turbolinks-track': 'reload' %>
-
-
 <% if flash[:error].present? %>
   <div class="alert alert-danger">
     <%= flash[:error] %>
   </div>
 <% end %>
 
+<div class="container">
+  <div class="row">
+<div class="mx-auto" style="width: 500px;">
+
 <h1>風変わり所登録</h1>
 
 <%= form_with model: @store, url: stores_path do |f| %>
 
-<div class="form-group">
-<%= f.label :image, "お店のイメージ" %>
+<table class="tableedit">
+  <tr>
+<th>
+  <%= f.label :image, "お店のイメージ" %>
+</th>
+<td>
 <%= f.file_field :image, accept: "image/*" %>
-</div>
+</td>
+</tr>
 
-<p>カテゴリ</p>
-<div class='form-group category-form'>
+<tr>
+  <th>
+  カテゴリ
+  </th>
+  <td class='form-group category-form'>
     <select class='form-control parent_id_form' name='store[parent_id]'>
       <% @category_parent_array.each do |category| %>
           <option value='<%= category[1] %>' data-category='<%= category[1] %>'><%= category[0] %></option>
       <% end %>
     </select>
     <i class='fas fa-chevron-down'></i>
-</div>
+  </td>
+</tr>
 
-<div class="form-group">
+<tr>
+  <th>
 <%= f.label :shop, "店名" %>
-<%= f.text_field :shop %>
-</div>
+  </th>
+<td>
+<%= f.text_field :shop, class: 'form-control' %>
+</td>
+</tr>
 
-<div class="form-group">
+<tr>
+  <th>
 <%= f.label :description, "説明文" %>
-<%= f.text_area :description %>
-</div>
+  </th>
+<td>
+<%= f.text_area :description, class: 'form-control' %>
+</td>
+</tr>
 
-<div class="form-group">
+<tr>
+  <th>
 <%= f.label :nearest_station, "最寄り駅" %>
-<%= f.text_field :nearest_station %>
-</div>
-
-<div class="form-group">
+  </th>
+<td>
+<%= f.text_field :nearest_station, class: 'form-control' %>
+</td>
+</tr>
+</table>
+<input type="hidden" name="store[category_id]" value="1">
 <label>タグ(,で区切ると複数タグ登録できます)</label>
 <%= f.text_field :name,value: @tag_list, class: 'form-control' %>
-</div>
 
 <% if @member.email == "guest@example.com" then %>
 <div class="form-group">
@@ -55,7 +77,10 @@
 <%= f.submit '新規投稿', class: "btn btn-success" %>
 </div>
 <% end %>
+</div>
 
-<input type="hidden" name="store[category_id]" value="1">
 
 <% end %>
+</div>
+</div>
+</div>
