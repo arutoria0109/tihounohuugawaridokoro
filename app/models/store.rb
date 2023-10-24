@@ -16,17 +16,18 @@ class Store < ApplicationRecord
 
 
   # 検索方法分岐 (nameは検索対象であるstoresテーブル内のカラム名)
-  def self.looks(parent, children, grandchildren, name)
+  def self.looks(parent, children, grandchildren, shop)
     if parent != "-" && children != "---" && grandchildren != "---"
       @store = Store.where(parent_id: parent, children_id: children,grandchildren_id: grandchildren)
     else
-      if name!= ""
-      @stores = Store.where(name: name)
+      if shop!= ""
+      @stores = Store.where(shop: shop)
       else
       @stores = Store.all
       end
     end
   end
+
 
   def save_tags(tags)
     # タグが存在していれば、タグの名前を配列として全て取得

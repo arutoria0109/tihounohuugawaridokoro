@@ -89,7 +89,7 @@ class Member::StoresController < ApplicationController
   end
 
   def search
-    @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:name]).page(params[:page]).per(10)
+    @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop]).page(params[:page]).per(10)
     @category_parent_array = Category.category_parent_array_create
     @tag_list = Tag.page(params[:page]).per(8)
   end

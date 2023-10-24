@@ -11,6 +11,7 @@ Rails.application.routes.draw do
    post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
    get "/members/unsubscribe" => "members#unsubscribe"
    get "/members/mypage" => "members#show"
+   get "/members/mystore" => "members#mystore"
    get "/members/information/edit" => "members#edit"
    patch "/members/update" => "members#update"
    patch "/members/withdraw" => "members#withdraw"

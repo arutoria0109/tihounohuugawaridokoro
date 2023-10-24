@@ -1,0 +1,22 @@
+<h2><%= @member.name %>の投稿一覧</h2>
+
+
+<% @stores.each do |store| %>
+
+ <tr>
+   <td>
+      <%= link_to store_path(store.id) do %>
+   <% if store.image.attached? %>
+       <%= image_tag store.image, size: "180x120" %>
+      <% else %>
+       <%= image_tag 'no_image', size: "180x120" %>
+      <% end %>
+      <% end %>
+   </td>
+   
+   <td><%= store.id %></td>
+    <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
+   <td><%= link_to truncate(store.shop, length: 10), store_path(store.id), class: "text-dark" %></td>
+   </tr>
+   <% end %>
+

@@ -8,7 +8,7 @@ $(function() {
   }
 
   function appendChidrenBox(insertHTML) {
-    let childrenSelectHtml = '';
+    let childrenSelectHtml = '-';
     childrenSelectHtml = `
       <div id='children-wrapper'>
         <select id='children-category' class='form-control' name='children_id'>
@@ -115,7 +115,7 @@ $(function() {
       <li class="list-group-item">
         <div class='form-group category-form'>
 
-   <%= f.text_field :name, placeholder: "店名を入力" %>
+   <%= f.text_field :shop, placeholder: "店名を入力(無しでも可)" %>
     <select class='form-control parent_id_form' name='parent_id'>
       <% category_parent_array.each do |category| %>
           <option value='<%= category[1] %>' data-category='<%= category[1] %>'><%= category[0] %></option>

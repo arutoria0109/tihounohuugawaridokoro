@@ -4,6 +4,11 @@ class Member::MembersController < ApplicationController
     @member = current_member
   end
 
+  def mystore
+    @member = current_member
+    @stores = current_member.stores
+  end
+
   def edit
     @member = current_member
     @members = Member.all
