@@ -46,7 +46,7 @@ class Admin::StoresController < ApplicationController
   end
 
   def search
-      @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:name])
+      @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop])
       @category_parent_array = Category.category_parent_array_create
   end
 

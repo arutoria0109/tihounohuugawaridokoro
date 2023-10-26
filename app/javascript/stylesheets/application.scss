@@ -9,7 +9,14 @@
  body {
    background-image: url("../images/haikei.jpg");
    background-repeat     : no-repeat; /*背景画像を繰り返さないよう指定*/
+   background-size: cover;
+   color         : #000000;              /* 文字色               */
  }
+
+ main{
+   padding-bottom: 56px;
+ }
+
 /* --- 文字BOX(子要素) ------------------ */
 .over {
   position   : absolute;                   /* 親要素からの絶対位置 */
@@ -22,7 +29,7 @@
   left       : 50%;                        /* 親要素からの左位置 */
   transform  : translate(-50%, -67%);      /* 文字BOXの位置ずらし */
   padding    : 10px;                       /* BOX内の余白 */
-  font-size  : 30pt;                       /* 文字サイズ */
+  font-size  : 22pt;                       /* 文字サイズ */
   font-weight: bold;                       /* 太字 */
   line-height: 1em;                        /* 1行の高さ */
 }
@@ -37,14 +44,16 @@
   color         : #000000;              /* 文字色               */
   border        : 7px dotted #7f4600;   /* 枠線の指定           */
   border-radius : 1px;                  /* 角丸の指定           */
+  background    : #ffcc99;              /* BOXの背景色          */
 }
 
 .tbody{
-  margin-right  : 10px;                 
+  margin-right  : 10px;
   box-sizing    : border-box;           /* 罫線も含む長さ       */
   width         : 100%;
   border        : 8px solid #ffffff;   /* 枠線の指定           */
   border-radius : 1px;                  /* 角丸の指定           */
+  background    : #ffffff;              /* BOXの背景色          */
 }
 
 .tableArea {
@@ -127,18 +136,143 @@
   border-spacing : 0;                /* 罫線間余白 */
   font-size      : 9pt;              /* 文字サイズ */
 }
- /* --- ヘッダーのスタイル指定 ------------------- */
+ /* --- 見出しーのスタイル指定 ------------------- */
 .tableedit th {
   text-align    : left;              /* 文字位置   */
   font-weight   : bold;              /* 太文字     */
   padding       : 16px 0 16px 16px;           /* 余白       */
   font-size     : 16px     ;
 }
- /* --- 明細のスタイル指定 ----------------------- */
+ /* --- 本文のスタイル指定 ----------------------- */
 .tableedit td {
   text-align    : left;              /* 文字位置   */
   font-weight   : bold;              /* 太文字     */
   padding       : 16px 16px;           /* 余白       */
   font-size     : 15px     ;
-
 }
+
+
+/*ヘッダーボタンの設定*/
+.css-button {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  z-index: 0;
+  background: #fff;
+  overflow: hidden;
+  border: 2px solid #57cc99;
+  color: #000000;
+}
+.css-button:hover {
+  color: #fff;
+}
+.css-button:hover:after {
+  width: 100%;
+}
+.css-button:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.5s ease;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: #6B8E23;
+}
+
+//編集ボタンのCSS
+.edit-button {
+  min-width: 130px;
+  height: 40px;
+  color: #000000;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #48D1CC;
+  box-shadow: 0 7px #005257;
+}
+.edit-button:hover {
+  box-shadow: 0 3px #005257;
+  color: #fff;
+  top: 1px;
+}
+.edit-button:active {
+  box-shadow: 0 0 #005257;
+  top: 7px;
+}
+
+//削除ボタンのCSS
+.destroy-button {
+  min-width: 130px;
+  height: 40px;
+  color: #000000;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #ef233c;
+  box-shadow: 0 7px #d90429;
+}
+.destroy-button:hover {
+  box-shadow: 0 3px #d90429;
+  color: #fff;
+  top: 1px;
+}
+.destroy-button:active {
+  box-shadow: 0 0 #d90429;
+  top: 7px;
+}
+
+
+//一覧ボタンのCSS
+.index-button {
+  min-width: 130px;
+  height: 40px;
+  color: #000000;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #6B8E23;
+  box-shadow: 0 7px #526c1e;
+}
+.index-button:hover {
+  box-shadow: 0 3px #526c1e;
+  color: #fff;
+  top: 1px;
+}
+.index-button:active {
+  box-shadow: 0 0 #526c1e;
+  top: 7px;
+}
+
+
+ .textback {
+   background-image: url("../images/textback.jpg");
+   background-repeat     : no-repeat; /*背景画像を繰り返さないよう指定*/
+ }

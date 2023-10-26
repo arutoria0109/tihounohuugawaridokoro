@@ -1,15 +1,18 @@
+<div class="container">
+  <div class-"row">
+    <div class="mx-auto" style="width: 500px;">
 <h2><%= @member.name %>の投稿一覧</h2>
-
+ 
 
 <% @stores.each do |store| %>
-
+<table class="table">
  <tr>
    <td>
       <%= link_to store_path(store.id) do %>
    <% if store.image.attached? %>
-       <%= image_tag store.image, size: "180x120" %>
+       <%= image_tag store.image, size: "150x100" %>
       <% else %>
-       <%= image_tag 'no_image', size: "180x120" %>
+       <%= image_tag 'no_image', size: "150x100" %>
       <% end %>
       <% end %>
    </td>
@@ -19,4 +22,5 @@
    <td><%= link_to truncate(store.shop, length: 10), store_path(store.id), class: "text-dark" %></td>
    </tr>
    <% end %>
+   </table>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tihounohuugawaridokoro</title>
+    <title>地方の風変わり所</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,81 +10,81 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
 
   <body>
-    <header class="border border-dark">
+    <header class="border-bottom border-white">
       <div class="container-fould">
        <nav class="navbar">
         <div class="navbar-brand">
           <%= link_to root_path do %>
-          <h1><%= image_tag('地方の風変わり所.png') %></h1>
+          <h1><%= image_tag('地方の風変わり所.jpg') %></h1>
           <% end %>
         </div>
-        
+
 
 <% if member_signed_in? %>
   <ul class="ml-auto d-flex">
-    <li class="nav-link text-light ">
-    <%= link_to "About",about_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "About",about_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "マイページ",members_mypage_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "マイページ",members_mypage_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "投稿一覧",stores_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "投稿一覧",stores_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "お気に入り場所",stores_like_list_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "お気に入り場所",stores_like_list_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "ログアウト",destroy_member_session_path, method: :delete, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "ログアウト",destroy_member_session_path, method: :delete, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "新規投稿",new_store_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "新規投稿",new_store_path, class: "css-button" %>
     </li>
   </ul>
 
   <% elsif admin_signed_in? %>
   <ul class="ml-auto d-flex">
-    <li class="nav-link text-light ">
-    <%= link_to "About",about_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "About",about_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "投稿一覧",admin_stores_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "投稿一覧",admin_stores_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "会員一覧",admin_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "会員一覧",admin_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "css-button" %>
     </li>
   </ul>
   <% else %>
 
   <ul class="ml-auto d-flex">
-    <li class="nav-link text-light ">
-    <%= link_to "About",about_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "About",about_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "ゲストログイン", homes_guest_sign_in_path, class: "btn btn-outline-dark", method: :post %>
+    <li class="nav-link text-light">
+    <%= link_to "ゲストログイン", homes_guest_sign_in_path, class: "css-button", method: :post %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "新規登録", new_member_registration_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "新規登録", new_member_registration_path, class: "css-button" %>
     </li>
 
-    <li class="nav-link text-light ">
-    <%= link_to "ログイン", new_member_session_path, class: "btn btn-outline-dark" %>
+    <li class="nav-link text-light">
+    <%= link_to "ログイン", new_member_session_path, class: "css-button" %>
     </li>
    </ul>
   <% end %>
@@ -92,8 +92,9 @@
        </nav>
       </div>
     </header>
-
+<main>
     <%= yield %>
+</main>
 
     <footer class="custom-footer-color fixed-bottom">
       <div class="container">

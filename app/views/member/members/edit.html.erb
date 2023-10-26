@@ -1,8 +1,11 @@
-<h1><%= @member.name %>の会員情報編集</h1>
+<div class="container">
+  <div class-"row">
+    <div class="mx-auto" style="width: 500px;">
+<h1 class="m-3"><%= @member.name %>の会員情報編集</h1>
 
 <%= form_with model: @member, url: members_update_path do |f| %>
 
-<table>
+<table class="tableedit">
     <tr>
      <th><%= f.label "名前" %></th>
      <td><%= f.text_field :name %></td>
@@ -14,11 +17,17 @@
     </tr>
 
     <tr>
-     <th></th>
-     <td><%= f.submit "編集内容を保存", class: 'btn btn-info' %></td>
-     <td><%= link_to "退会する", members_unsubscribe_path, class: 'btn btn-danger' %></td>
+     <th>
+        <%= link_to members_mypage_path do %>
+        <i class="fa-solid fa-rotate-left fa-beat-fade fa-2xl" style="color: #fff;"></i>
+        <% end %>
+     </th>
+     <td><%= f.submit "編集内容を保存", class: "index-button" %></td>
+     <td><%= link_to "退会する", members_unsubscribe_path, class: 'destroy-button' %></td>
     </tr>
 </table>
 
 <% end %>
-
+</div>
+</div>
+</div>

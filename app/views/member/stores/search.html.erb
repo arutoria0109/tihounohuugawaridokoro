@@ -3,6 +3,20 @@
 <div class="col-lg-3">
 <%= render "search", category_parent_array: @category_parent_array %>
 <!--タグリスト-->
+<div class="tagbox">
+  <h6>タグ検索</h6>
+<% @tag_list.each do |list| %>
+<table>
+  <tr>
+      <% unless list.stores.count.zero? %>
+    　<i class="fa-sharp fa-solid fa-tag"></i>
+      <%= link_to truncate(list.name, length: 6), search_tag_path(tag_id: list.id), class: "text-dark" %>
+      <%="(#{list.stores.count})" %>
+      <% end %>
+<% end %>
+  </tr>
+</table>
+</div>
 </div>
 
 <div class="col-lg-9">

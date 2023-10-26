@@ -38,7 +38,7 @@ $(function() {
   $('.parent_id_form').on('change', function() {
     let parentId = document.querySelector('.parent_id_form').value;//←IDがついているものを探し()内
     console.log({parentId})
-    if (parentId != -1) {
+    if (parentId != "-") {
       $.ajax({
         url: '/get_category/children',
         type: 'GET',

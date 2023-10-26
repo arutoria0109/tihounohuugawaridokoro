@@ -4,7 +4,6 @@ class Member::StoresController < ApplicationController
     @store = Store.new
     @category_parent_array = Category.category_parent_array_create
     @member = current_member
-    @tag_list = @store.tags.pluck(:name).join(',')
   end
 
   def create

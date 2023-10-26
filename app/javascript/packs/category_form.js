@@ -1,3 +1,4 @@
+
 $(function() {
   function appendOption(category) {
     //変数の宣言
@@ -6,7 +7,7 @@ $(function() {
   }
 
   function appendChidrenBox(insertHTML) {
-    let childrenSelectHtml = '';
+    let childrenSelectHtml = '-';
     childrenSelectHtml = `
       <div id='children-wrapper'>
         <select id='children-category' class='form-control' name='store[children_id]'>
@@ -36,7 +37,7 @@ $(function() {
   $('.parent_id_form').on('change', function() {
     let parentId = document.querySelector('.parent_id_form').value;//←IDがついているものを探し()内
     console.log({parentId})
-    if (parentId != -1) {
+    if (parentId != "-") {
       $.ajax({
         url: '/get_category/children',
         type: 'GET',

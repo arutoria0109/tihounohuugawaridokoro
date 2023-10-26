@@ -44,13 +44,13 @@
    <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
    <% if store.like_listed_by?(current_member) %>
     <td>
-      <%= link_to store_like_lists_path(store), class: "text-danger", method: :delete do %>
+      <%= link_to store_like_lists_path(store), class: "text-danger", method: :delete, remote: true do %>
         ♥<%= store.like_lists.count %> いいね
       <% end %>
     </td>
     <% else %>
     <td>
-      <%= link_to store_like_lists_path(store), class: "text-dark", method: :post do %>
+      <%= link_to store_like_lists_path(store), class: "text-dark", method: :post, remote: true do %>
         ♡<%= store.like_lists.count %> いいね
       <% end %>
     </td>
