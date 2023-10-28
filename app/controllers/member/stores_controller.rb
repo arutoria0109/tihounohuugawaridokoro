@@ -13,22 +13,22 @@ class Member::StoresController < ApplicationController
     @store = @member.stores.build(store_params)
     tag_list = params[:store][:name].split(',')
     if @store.save
-    #maltilevel_category_createメソッドに引数を4つ渡して実行
-    StoreCategory.maltilevel_category_create(
-      @store,
-        params[:parent_id],
-         params[:children_id],
-          params[:grandchildren_id]
-          )
-    @store.save_tags(tag_list)
-    redirect_to store_path(@store), notice:"投稿完了！"
+      #maltilevel_category_createメソッドに引数を4つ渡して実行
+      StoreCategory.maltilevel_category_create(
+        @store,
+          params[:parent_id],
+           params[:children_id],
+            params[:grandchildren_id]
+           )
+      @store.save_tags(tag_list)
+      redirect_to store_path(@store), notice:"投稿完了！"
     else
-    flash[:error] = @store.errors.full_messages.join(', ')
-    @stores = Store.all
-    #category_parent_array_createメソッドの戻り値として受け取った配列をインスタンス変数に代入
-    @category_parent_array = Category.category_parent_array_create
-    flash[:notice] = "投稿失敗"
-    render :new
+      flash[:error] = @store.errors.full_messages.join(', ')
+      @stores = Store.all
+      #category_parent_array_createメソッドの戻り値として受け取った配列をインスタンス変数に代入
+      @category_parent_array = Category.category_parent_array_create
+      flash[:notice] = "投稿失敗"
+      render :new
     end
   end
 
@@ -78,10 +78,10 @@ class Member::StoresController < ApplicationController
     tag_list=params[:store][:name].split(',')
     if @store.update(store_params)
       @store.save_tags(tag_list)
-    redirect_to store_path(@store), notice:"変更完了！"
+      redirect_to store_path(@store), notice:"変更完了！"
     else
-    flash[:notice] = "変更できていません"
-    render :edit
+      flash[:notice] = "変更できていません"
+      render :edit
     end
   end
 
@@ -111,7 +111,7 @@ class Member::StoresController < ApplicationController
   private
 
   def store_params
-      params.require(:store).permit(:name, :nearest_station, :description, :image, :category_id, :parent_id, :children_id, :grandchildren_id, :shop)
+    params.require(:store).permit(:name, :nearest_station, :description, :image, :category_id, :parent_id, :children_id, :grandchildren_id, :shop)
   end
 
   def is_matching_login_member

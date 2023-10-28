@@ -1,37 +1,37 @@
 <div class="container">
   <div class-"row">
     <div class="mx-auto" style="width: 500px;">
-<h1><%= @member.name %>の会員情報編集</h1>
-<%= form_with model: @member, url: admin_member_path, method: :patch do |f| %>
-<table class="tableedit">
-    <tr>
-     <th><%= f.label "名前" %></th>
-     <td><%= f.text_field :name %></td>
-    </tr>
+      <h1><%= @member.name %>の会員情報編集</h1>
+      <%= form_with model: @member, url: admin_member_path, method: :patch do |f| %>
+        <table class="tableedit">
+          <tr>
+            <th><%= f.label "名前" %></th>
+            <td><%= f.text_field :name %></td>
+          </tr>
 
-    <tr>
-     <th><%= f.label "メールアドレス" %></th>
-     <td><%= f.email_field :email %></td>
-    </tr>
+          <tr>
+            <th><%= f.label "メールアドレス" %></th>
+            <td><%= f.email_field :email %></td>
+          </tr>
 
-<tr>
-  <th>
-    <%= f.radio_button :is_valid, :true %>
-    <%= f.label :is_valid_true, "有効" %>
-  </th>
-  <th>
-    <%= f.radio_button :is_valid, :false %>
-    <%= f.label :is_valid_false, "退会" %>
-  </th>
-</tr>
+          <tr>
+            <th>
+              <%= f.radio_button :is_valid, :true %>
+              <%= f.label :is_valid_true, "有効" %>
+            </th>
+            <th>
+              <%= f.radio_button :is_valid, :false %>
+              <%= f.label :is_valid_false, "退会" %>
+            </th>
+          </tr>
 
-<tr>
-  <th><%= f.submit '変更を保存', class: "btn btn-success" %></th>
-</tr>
-</table>
+          <tr>
+            <th><%= f.submit '変更を保存', class: "btn btn-success" %></th>
+          </tr>
+        </table>
 
-<% end %>
+      <% end %>
 
-</div>
-</div>
+    </div>
+  </div>
 </div>

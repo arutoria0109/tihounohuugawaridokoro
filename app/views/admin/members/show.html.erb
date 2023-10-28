@@ -2,50 +2,49 @@
 <div class="container">
   <div class-"row">
     <div class="mx-auto" style="width: 500px;">
+    <h1 class="pl-2"><%= @member.name %>の会員詳細</h1>
 
-<h1 class="pl-2"><%= @member.name %>の会員詳細</h1>
+      <table class="tableedit">
+        <tr>
+          <th>会員ID</th>
+          <td><%= @member.id %></td>
+        </tr>
 
-<table class="tableedit">
-  <tr>
-    <th>会員ID</th>
-    <td><%= @member.id %></td>
-  </tr>
+        <tr>
+          <th>名前</th>
+          <td><%= @member.name %></td>
+        </tr>
 
-  <tr>
-    <th>名前</th>
-    <td><%= @member.name %></td>
-  </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @member.email %></td>
+        </tr>
 
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @member.email %></td>
-  </tr>
+        <tr>
+          <th>退会ステータス</th>
+            <% if @member.is_valid %>
+              <td>有効</td>
+            <% else %>
+              <td>退会済</td>
+            <% end %>
+        </tr>
 
-  <tr>
-    <th>退会ステータス</th>
-      <% if @member.is_valid %>
-        <td>有効</td>
-      <% else %>
-        <td>退会済</td>
-      <% end %>
-  </tr>
+        <tr>
+          <th><%= link_to "編集する", edit_admin_member_path, class: 'btn btn-primary' %></th>
+              <% unless @member.is_valid %>
+          <td><%= link_to 'アカウント削除', admin_member_path, class: 'btn btn-danger', method: :delete %></td>
+              <% end %>
+        </tr>
 
-  <tr>
-    <th><%= link_to "編集する", edit_admin_member_path, class: 'btn btn-primary' %></th>
-        <% unless @member.is_valid %>
-    <td><%= link_to 'アカウント削除', admin_member_path, class: 'btn btn-danger', method: :delete %></td>
-        <% end %>
-  </tr>
-  <tr>
-    <th>
-        <%= link_to admin_path do %>
-        <i class="fa-solid fa-rotate-left fa-beat-fade fa-2xl" style="color: #fff;"></i>
-        <% end %>
-    </th>
-  </tr>
-</table>
-
+        <tr>
+          <th>
+            <%= link_to admin_path do %>
+            <i class="fa-solid fa-rotate-left fa-beat-fade fa-2xl" style="color: #fff;"></i>
+            <% end %>
+          </th>
+        </tr>
+      </table>
+    </div>
   </div>
-  </div>
-  </div>
+</div>
 

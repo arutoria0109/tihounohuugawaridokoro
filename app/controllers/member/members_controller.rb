@@ -35,9 +35,10 @@ class Member::MembersController < ApplicationController
   end
 
   private
-    def member_params
-      params.require(:member).permit(:name, :email)
-    end
+
+  def member_params
+    params.require(:member).permit(:name, :email)
+  end
 
 end
 

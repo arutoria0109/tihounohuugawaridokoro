@@ -100,7 +100,6 @@ $(function() {
 });
 
 </script>
-
 <% if flash[:error].present? %>
   <div class="alert alert-danger">
     <%= flash[:error] %>
@@ -110,25 +109,21 @@ $(function() {
 <div class="pl-3">
   <div class="card headline">
     <h6 class="card-header text-center ">カテゴリ検索</h6>
-
-
-<div class="search_form">
-   <%= form_with url: searche_path, method: :get, local: true do |f| %>
-      <li class="list-group-item">
-        <div class='form-group category-form'>
-
-   <%= f.text_field :shop, placeholder: "店名を入力(無しでも可)" %>
-    <select class='form-control parent_id_form' name='parent_id'>
-      <% category_parent_array.each do |category| %>
-          <option value='<%= category[1] %>' data-category='<%= category[1] %>'><%= category[0] %></option>
-      <% end %>
-    </select>
-    <i class='fas fa-chevron-down'></i>
+    <div class="search_form">
+        <%= form_with url: searche_path, method: :get, local: true do |f| %>
+          <li class="list-group-item">
+          <div class='form-group category-form'>
+          <%= f.text_field :shop, placeholder: "店名を入力(無しでも可)" %>
+          <select class='form-control parent_id_form' name='parent_id'>
+            <% category_parent_array.each do |category| %>
+            <option value='<%= category[1] %>' data-category='<%= category[1] %>'><%= category[0] %></option>
+            <% end %>
+          </select>
+          <i class='fas fa-chevron-down'></i>
+          </div>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+        <% end %>
+          </li>
+    </div>
+  </div>
 </div>
-   <%= f.submit "検索", class: "btn btn-primary" %>
-
-   <% end %>
-      </li>
-      </div>
-  </div>
-  </div>

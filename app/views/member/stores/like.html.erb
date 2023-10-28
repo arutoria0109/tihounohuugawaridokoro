@@ -1,74 +1,74 @@
 <div class="container-fould">
   <div class="row">
-<div class="col-lg-3">
-<%= render "search", category_parent_array: @category_parent_array %>
+    <div class="col-lg-3">
+    <%= render "search", category_parent_array: @category_parent_array %>
 
+    </div>
+
+      <div class="col-lg-9">
+      <h2><%= @member.name %>さんのお気に入りリスト</h2>
+      <div class="tbody">
+        <table class= "table table-hover table-inverse mx-auto">
+          <tr class="p-3 mb-2 text-dark" style="background:lightgreen">
+            <th>投稿No.</th>
+            <th>〇〇地方, 都道府県, カテゴリ</th>
+            <th>店舗名</th>
+            <th>説明文</th>
+            <th>最寄り駅</th>
+            <th>コメント</th>
+            <th>いいね数</th>
+          </tr>
+      <% if @member.email == "guest@example.com" then %>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>会員登録するといいねした場所を保存できます</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+
+      <% else %>
+
+          <% @liked_stores.each do |store| %>
+            <tr>
+              <td><%= store.id %></td>
+              <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
+              <td><%= link_to truncate(store.shop, length: 10), store_path(store.id), class: "text-dark" %></td>
+              <td><%= truncate(store.description, length: 20) %></td>
+              <td><%= store.nearest_station %></td>
+              <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
+                  <% if store.like_listed_by?(current_member) %>
+                  <td>
+                    <%= link_to store_like_lists_path(store), class: "text-danger", method: :delete, remote: true do %>
+                    ♥<%= store.like_lists.count %> いいね
+                    <% end %>
+                  </td>
+                  <% else %>
+                  <td>
+                    <%= link_to store_like_lists_path(store), class: "text-dark", method: :post, remote: true do %>
+                      ♡<%= store.like_lists.count %> いいね
+                    <% end %>
+                  </td>
+                  <% end %>
+          <% end %>
+            </tr>
+      <% end %>
+             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><%= paginate @liked_stores %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+             </tr>
+        </table>
+      </div>
+      </div>
+  </div>
 </div>
 
-<div class="col-lg-9">
- <h2><%= @member.name %>さんのお気に入りリスト</h2>
- <div class="tbody">
-<table class= "table table-hover table-inverse mx-auto">
- <tr class="p-3 mb-2 text-dark" style="background:lightgreen">
-  <th>投稿No.</th>
-  <th>〇〇地方, 都道府県, カテゴリ</th>
-  <th>店舗名</th>
-  <th>説明文</th>
-  <th>最寄り駅</th>
-  <th>コメント</th>
-  <th>いいね数</th>
- </tr>
-
-<% if @member.email == "guest@example.com" then %>
-<tr>
- <th></th>
- <th></th>
- <th></th>
- <th>会員登録するといいねした場所を保存できます</th>
- <th></th>
- <th></th>
- <th></th>
-
-</tr>
-
-
-<% else %>
-
-<% @liked_stores.each do |store| %>
- <tr>
-   <td><%= store.id %></td>
-    <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
-   <td><%= link_to truncate(store.shop, length: 10), store_path(store.id), class: "text-dark" %></td>
-   <td><%= truncate(store.description, length: 20) %></td>
-   <td><%= store.nearest_station %></td>
-   <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
-   <% if store.like_listed_by?(current_member) %>
-    <td>
-      <%= link_to store_like_lists_path(store), class: "text-danger", method: :delete, remote: true do %>
-        ♥<%= store.like_lists.count %> いいね
-      <% end %>
-    </td>
-    <% else %>
-    <td>
-      <%= link_to store_like_lists_path(store), class: "text-dark", method: :post, remote: true do %>
-        ♡<%= store.like_lists.count %> いいね
-      <% end %>
-    </td>
-  <% end %>
-  <% end %>
- </tr>
- <% end %>
-   <tr>
-   <td></td>
-      <td></td>
-   <td></td>
-<td><%= paginate @liked_stores %></td>
-   <td></td>
-   <td></td>
-   <td></td>
- </tr>
- </table>
- </div>
-  </div>
 
 

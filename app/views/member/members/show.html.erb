@@ -2,27 +2,25 @@
 <div class="container">
   <div class-"row">
     <div class="mx-auto" style="width: 500px;">
-<h1 class="m-3">mypage ページ</h1>
+      <h1 class="m-3">mypage ページ</h1>
+      <table class="tableedit">
+        <tr>
+          <th>お名前</th>
+          <td><%= @member.name %></td>
+        </tr>
 
-<table class="tableedit">
-    <tr>
-        <th>お名前</th>
-        <td><%= @member.name %></td>
-    </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @member.email %></td>
+        </tr>
 
-    <tr>
-        <th>メールアドレス</th>
-        <td><%= @member.email %></td>
-    </tr>
-
-    <tr>
-        <% unless @member.email == "guest@example.com" then %>
-        <th><%= link_to "編集する", members_information_edit_path, class: "edit-button" %></th>
-        <th><%= link_to "投稿履歴一覧", members_mystore_path, class: "index-button" %></th>
-        <% end %>
-    </tr>
-</table>
-
-</div>
-</div>
+        <tr>
+          <% unless @member.email == "guest@example.com" then %>
+          <th><%= link_to "編集する", members_information_edit_path, class: "edit-button" %></th>
+          <th><%= link_to "投稿履歴一覧", members_mystore_path, class: "index-button" %></th>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

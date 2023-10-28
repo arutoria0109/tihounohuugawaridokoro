@@ -1,23 +1,17 @@
 <div class="container">
   <div class-"row">
     <div class="mx-auto" style="width: 500px;">
-<h1 class="mt-5">本当に退会しますか？</h1>
+    <h1 class="mt-5">本当に退会しますか？</h1>
 
-<p>退会しますと同じメールアドレスでログインできなくなります。</br>
-   宜しければ退会をクリックしてください。
-</p>
-
-<table class="tableedit">
-    <tr>
-        <th>
-<%= link_to "退会する",members_withdraw_path, method: :patch, class: 'destroy-button', data: {confilm: "本当に退会しますか？"} %>
-        </th>
-        <th>
-<%= link_to "退会しない", root_path, class: "edit-button" %>
-        </th>
-    </tr>
-</table>
-
-</div>
-</div>
+    <p>退会しますと同じメールアドレスでログインできなくなります。</br>
+       宜しければ退会をクリックしてください。
+    </p>
+      <table class="tableedit">
+        <tr>
+          <th><%= link_to "退会する",members_withdraw_path, method: :patch, class: 'destroy-button', data: {confilm: "本当に退会しますか？"} %></th>
+          <th><%= link_to "退会しない", root_path, class: "edit-button" %></th>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

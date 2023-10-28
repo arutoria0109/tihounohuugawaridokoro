@@ -35,10 +35,10 @@ class Admin::StoresController < ApplicationController
     tag_list=params[:store][:name].split(',')
     if @store.update(store_params)
       @store.save_tags(tag_list)
-    redirect_to admin_store_path(@store), notice:"投稿完了！"
+      redirect_to admin_store_path(@store), notice:"投稿完了！"
     else
-    flash[:notice] = "投稿失敗"
-    render :edit
+      flash[:notice] = "投稿失敗"
+      render :edit
     end
   end
 
@@ -49,9 +49,9 @@ class Admin::StoresController < ApplicationController
   end
 
   def search
-      @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop]).page(params[:page]).per(10)
-      @category_parent_array = Category.category_parent_array_create
-      @tag_list = Tag.page(params[:page]).per(8)
+    @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop]).page(params[:page]).per(10)
+    @category_parent_array = Category.category_parent_array_create
+    @tag_list = Tag.page(params[:page]).per(8)
   end
 
   def search_tag

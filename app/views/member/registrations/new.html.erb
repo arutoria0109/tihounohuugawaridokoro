@@ -1,76 +1,43 @@
 
 <%= form_with model: @member, url: member_registration_path do |f| %>
-  <%= render "member/shared/error_messages", resource: resource %>
-
-<!--<div class="background-image-container-fould">-->
+<%= render "member/shared/error_messages", resource: resource %>
 <div class="container">
   <div class-"row">
     <div class="mx-auto" style="width: 500px;">
 
-    <h2 class="m-3">新規会員登録画面</h2>
-<table class="tableedit">
-    <tr>
-      <th>
-            <%= f.label "名前" %><br />
-      </th>
-          <th>
-    <%= f.text_field :name, autofocus: true %>
-          </th>
+      <h2 class="m-3">新規会員登録画面</h2>
+      <table class="tableedit">
+        <tr>
+          <th><%= f.label "名前" %><br /></th>
+          <th><%= f.text_field :name, autofocus: true %></th>
+        </tr>
 
-    </tr>
+        <tr>
+          <th><%= f.label "メールアドレス" %><br /></th>
+          <th><%= f.email_field :email, autofocus: true, autocomplete: "email" %></th>
 
-    <tr>
-                <th>
+        </tr>
 
-    <%= f.label "メールアドレス" %><br />
-              </th>
-          <th>
+        <tr>
+          <th><%= f.label "パスワード" %></th>
+            <% if @minimum_password_length %>
+            <% end %><br />
+          <th><%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上で入力" %></th>
+        </tr>
 
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-              </th>
+        <tr>
+          <th><%= f.label "パスワード再入力" %><br /></th>
+          <th><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上で入力" %></th>
+        </tr>
 
-    </tr>
-
-    <tr>
-            <th>
-              <%= f.label "パスワード" %>
-            </th>
-
-
-    <% if @minimum_password_length %>
-    <% end %><br />
-          <th>
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上で入力" %>
-          </th>
-
-    </tr>
-
-    <tr>
-            <th>
-    <%= f.label "パスワード再入力" %><br />
-            </th>
-
-          <th>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上で入力" %>
-          </th>
-
-    </tr>
-
-
-    <tr>
-            <th>
-    <%= f.submit "会員登録" %>
-            </th>
-
-    </tr>
+        <tr>
+          <th><%= f.submit "会員登録" %></th>
+        </tr>
 <% end %>
-<tr>
-  <th>
-<%= render "member/shared/links" %>
-  </th>
-</tr>
-</table>
-</div>
-</div>
-</div>
+        <tr>
+          <th><%= render "member/shared/links" %></th>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

@@ -1,90 +1,82 @@
 <%= flash[:notice] %>
 <div class="container">
-   <h1 class="pt-3">投稿詳細</h1>
+  <h1 class="pt-3">投稿詳細</h1>
   <div class="row">
+    <div class="col-lg-5">
 
-<div class="col-lg-5">
+      <table class="tableArea2">
+        <tr>
+          <td><%= image_tag @store.image, size: "240x160" %></td>
+          <td></td>
+        </tr>
 
-<table class="tableArea2">
+        <tr>
+          <th>投稿者</th>
+          <td><%= @store.member.name %></td>
+        </tr>
 
-  <tr>
-    <td>
-       <%= image_tag @store.image, size: "240x160" %>
-    </td>
-    <td></td>
-  </tr>
+        <tr>
+          <th>カテゴリ</th>
+          <td><%= @store.parent.name %>,<%= @store.children.name %>,<%= @store.grandchildren.name %></td>
+        </tr>
 
- <tr>
-    <th>投稿者</th>
-    <td><%= @store.member.name %></td>
-  </tr>
+        <tr>
+          <th>店名</th>
+          <td><%= @store.shop %></td>
+        </tr>
 
-  <tr>
-    <th>カテゴリ</th>
-    <td><%= @store.parent.name %>,<%= @store.children.name %>,<%= @store.grandchildren.name %></td>
-  </tr>
+        <tr>
+          <th>店説明</th>
+          <td><%= @store.description %></td>
+        </tr>
 
-  <tr>
-    <th>店名</th>
-    <td><%= @store.shop %></td>
-  </tr>
+        <tr>
+          <th>最寄り駅</th>
+          <td><%= @store.nearest_station %></td>
+        </tr>
 
-  <tr>
-    <th>店説明</th>
-    <td><%= @store.description %></td>
-  </tr>
+        <tr>
+          <td><%= link_to "編集する", edit_admin_store_path, class: "edit-button" %></td>
+          <td><%= link_to '投稿削除', admin_store_path, class: "destroy-button", method: :delete, data: { confirm: '本当に消しますか？' } %></td>
+        </tr>
 
-  <tr>
-    <th>最寄り駅</th>
-    <td><%= @store.nearest_station %></td>
-  </tr>
+        <tr>
+          <th>タグ</th>
+          <td>
+            <% @store_tags.each do |tag| %>
+            <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= tag.name %>
+            <% end %>
+          </td>
+        </tr>
 
-  <tr>
-    <td><%= link_to "編集する", edit_admin_store_path, class: "edit-button" %></td>
-    <td><%= link_to '投稿削除', admin_store_path, class: "destroy-button", method: :delete, data: { confirm: '本当に消しますか？' } %></td>
-  </tr>
+        <tr>
+          <th>コメント件数</th>
+          <td>：<%= @store.comments.count %>件</td>
+        </tr>
 
-  <tr>
-    <th>
-      タグ
-      </th>
-
-      <td>
-        <% @store_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= tag.name %>
-         <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      コメント件数
-    </th>
-    <td>
-      ：<%= @store.comments.count %>件
-    </td>
-  </tr>
-
-  </table>
-
-  </div>
+      </table>
+    </div>
 
 
-<div class="col-lg-7">
-   <div class= "textbox">
-  <table>
- <tr>
-  <% @store.comments.each do |comment| %>
-    <td>
-    <%= comment.member.name %></br></br>
-    <div class="balloon">
-    <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
-      <%= link_to admin_store_comment_path(comment.store, comment), method: :delete do %>
-      <i class="fa-solid fa-square-minus" style="color: #f11313;"></i>
-      <% end %>
+    <div class="col-lg-7">
+      <div class= "textbox">
+        <table>
+          <tr>
+            <% @store.comments.each do |comment| %>
+            <td>
+              <%= comment.member.name %></br></br>
+              <div class="balloon">
+              <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
+                <%= link_to admin_store_comment_path(comment.store, comment), method: :delete do %>
+                <i class="fa-solid fa-square-minus" style="color: #f11313;"></i>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+            <% end %>
+        </table>
       </div>
-    </td>
-    </tr>
-  <% end %>
-  </table>
+    </div>
   </div>
+</div>
