@@ -44,7 +44,6 @@ class Admin::StoresController < ApplicationController
 
   def destroy
     @store = Store.find(params[:id])
-    @storedelete = Store.pluck(:store_id)
     @store.destroy
     redirect_to admin_stores_path, notice:"削除完了！"
   end

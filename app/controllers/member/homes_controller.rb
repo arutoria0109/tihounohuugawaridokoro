@@ -8,6 +8,7 @@ class Member::HomesController < ApplicationController
   def guest_sign_in
     member = Member.find_or_create_by!(email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
+      member.name = "ゲスト"
   end
   sign_in member
   redirect_to stores_path, notice: 'ゲストログインとしてログインしました。'
