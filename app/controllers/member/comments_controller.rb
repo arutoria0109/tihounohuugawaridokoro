@@ -9,10 +9,8 @@ class Member::CommentsController < ApplicationController
 
    if @comment.save
     redirect_to store_path(@store)
-   else
-    # エラーハンドリング
-    render :new # エラーが発生した場合、フォームを再表示するか、適切な処理を行う
    end
+
   end
 
   def destroy

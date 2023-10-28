@@ -1,10 +1,5 @@
 <%= javascript_pack_tag 'category_form', 'data-turbolinks-track': 'reload' %>
-<% if flash[:error].present? %>
-  <div class="alert alert-danger">
-    <%= flash[:error] %>
-  </div>
-<% end %>
-
+<div><%= flash[:notice] %></div>
 <div class="container">
   <div class="row">
 <div class="mx-auto" style="width: 500px;">

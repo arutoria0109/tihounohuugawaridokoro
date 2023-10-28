@@ -30,6 +30,7 @@ class Member::MembersController < ApplicationController
   def update
     @member = current_member
     @member.update(member_params)
+    flash[:notice] = "情報変更完了"
     redirect_to members_mypage_path
   end
 

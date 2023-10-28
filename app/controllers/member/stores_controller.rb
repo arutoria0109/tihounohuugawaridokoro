@@ -27,6 +27,7 @@ class Member::StoresController < ApplicationController
     @stores = Store.all
     #category_parent_array_createメソッドの戻り値として受け取った配列をインスタンス変数に代入
     @category_parent_array = Category.category_parent_array_create
+    flash[:notice] = "投稿失敗"
     render :new
     end
   end
@@ -77,8 +78,9 @@ class Member::StoresController < ApplicationController
     tag_list=params[:store][:name].split(',')
     if @store.update(store_params)
       @store.save_tags(tag_list)
-    redirect_to store_path(@store)
+    redirect_to store_path(@store), notice:"変更完了！"
     else
+    flash[:notice] = "変更できていません"
     render :edit
     end
   end
@@ -86,7 +88,7 @@ class Member::StoresController < ApplicationController
   def destroy
     @store = Store.find(params[:id])
     @store.destroy
-    redirect_to stores_path
+    redirect_to stores_path, notice:"投稿削除しました。"
   end
 
   def search
@@ -115,7 +117,7 @@ class Member::StoresController < ApplicationController
   def is_matching_login_member
     @store = Store.find(params[:id])
     unless current_member.id == @store.member_id
-      redirect_to stores_path
+      redirect_to stores_path, notice:"不正なアクセスです。"
     end
   end
 

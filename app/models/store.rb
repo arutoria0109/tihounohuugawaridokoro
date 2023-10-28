@@ -15,6 +15,13 @@ class Store < ApplicationRecord
   has_one_attached :image
 
 
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :shop, presence: true
+  validates :description, presence: true
+  validates :nearest_station, presence: true
+
+
   # 検索方法分岐 (nameは検索対象であるstoresテーブル内のカラム名)
   def self.looks(parent, children, grandchildren, shop)
     if parent != "-" && children != "---" && grandchildren != "---"

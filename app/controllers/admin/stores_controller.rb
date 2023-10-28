@@ -32,7 +32,9 @@ class Admin::StoresController < ApplicationController
 
   def update
     @store = Store.find(params[:id])
+    tag_list=params[:store][:name].split(',')
     if @store.update(store_params)
+      @store.save_tags(tag_list)
     redirect_to admin_store_path(@store)
     else
     render :edit
