@@ -1,4 +1,5 @@
 class Member::CommentsController < ApplicationController
+  before_action :authenticate_member!, except: [:top, :guest_sign_in, :about]
 
   def create
   @member = current_member

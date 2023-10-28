@@ -1,4 +1,5 @@
 class Member::StoresController < ApplicationController
+  before_action :authenticate_member!, except: [:top, :guest_sign_in, :about]
 
   def new
     @store = Store.new

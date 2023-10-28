@@ -1,4 +1,5 @@
 class Member::MembersController < ApplicationController
+  before_action :authenticate_member!, except: [:top, :guest_sign_in, :about]
 
   def show
     @member = current_member
