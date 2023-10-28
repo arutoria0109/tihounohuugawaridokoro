@@ -16,13 +16,13 @@ class Admin::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     @member.update(member_params)
-    redirect_to admin_member_path
+    redirect_to admin_member_path, notice:"変更完了！"
   end
 
   def destroy
     @member = Member.find(params[:id])
     @member.destroy
-    redirect_to admin_path
+    redirect_to admin_path, notice:"削除完了！"
   end
 
   private

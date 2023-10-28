@@ -35,8 +35,9 @@ class Admin::StoresController < ApplicationController
     tag_list=params[:store][:name].split(',')
     if @store.update(store_params)
       @store.save_tags(tag_list)
-    redirect_to admin_store_path(@store)
+    redirect_to admin_store_path(@store), notice:"投稿完了！"
     else
+    flash[:notice] = "投稿失敗"
     render :edit
     end
   end
@@ -45,7 +46,7 @@ class Admin::StoresController < ApplicationController
     @store = Store.find(params[:id])
     @storedelete = Store.pluck(:store_id)
     @store.destroy
-    redirect_to admin_stores_path
+    redirect_to admin_stores_path, notice:"削除完了！"
   end
 
   def search
