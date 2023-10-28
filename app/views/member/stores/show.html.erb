@@ -6,15 +6,17 @@
 <div class="col-lg-5">
 
 <table class="tableArea2">
+
   <tr>
     <td>
-      <% if @store.image.attached? %>
-       <%= image_tag @store.image, size: "210x140" %>
-      <% else %>
-       <%= image_tag 'no_image', size: "100x100" %>
-      <% end %>
+       <%= image_tag @store.image, size: "240x160" %>
     </td>
     <td></td>
+  </tr>
+
+<tr>
+    <th>投稿者</th>
+    <td><%= @store.member.name %></td>
   </tr>
 
   <tr>

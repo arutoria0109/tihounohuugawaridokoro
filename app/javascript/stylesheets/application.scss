@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color         : #000000;              /* 文字色               */
 }
 
  body {
@@ -108,12 +109,14 @@
 .tableArea2 th {
   text-align    : left;              /* 文字位置   */
   font-weight   : bold;              /* 太文字     */
-  padding       : 0px 0px;           /* 余白       */
+  font-size     : 17px;
+  padding       : 6px 0px;           /* 余白       */
 }
  /* --- 明細のスタイル指定 ----------------------- */
 .tableArea2 td {
   text-align    : left;              /* 文字位置   */
-  padding       : 0px 0px;           /* 余白       */
+  padding       : 6px 0px;           /* 余白       */
+  font-size     : 17px;
 }
 
 .textarea {
@@ -276,3 +279,30 @@
    background-image: url("../images/textback.jpg");
    background-repeat     : no-repeat; /*背景画像を繰り返さないよう指定*/
  }
+
+
+
+.tableM {
+  margin-left    : auto;             /* 自動位置   */
+  margin-right   : auto;             /* 自動位置   */
+  border-collapse: collapse;         /* 境界線結合 */
+  border-spacing : 0;                /* 罫線間余白 */
+  width         : 100%;
+  font-size      : 15pt;              /* 文字サイズ */
+  background     : #ffffff;          /* テーブル全体の背景色 */
+}
+ /* --- ヘッダーのスタイル指定 ------------------- */
+.tableM th {
+  text-align    : center;            /* 文字位置   */
+  font-weight   : bold;              /* 太文字     */
+  padding       : 0px 2px;           /* 余白       */
+  border        : 1px #666666 solid; /* 罫線       */
+  background    : #ccff99;           /* 背景色     */
+}
+ /* --- 明細のスタイル指定 ----------------------- */
+.tableM td {
+  text-align    : center;            /* 文字位置   */
+  font-weight   : bold;              /* 太文字     */
+  padding       : 0px 2px;           /* 余白       */
+  border        : 1px #666666 solid; /* 罫線       */
+}

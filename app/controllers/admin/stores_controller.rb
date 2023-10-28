@@ -1,7 +1,7 @@
 class Admin::StoresController < ApplicationController
 
   def index
-    @stores = Store.all
+    @stores = Store.page(params[:page]).per(10)
     @category_parent_array = Category.category_parent_array_create
     @tag_list = Tag.all
   end
@@ -46,18 +46,19 @@ class Admin::StoresController < ApplicationController
   end
 
   def search
-      @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop])
+      @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop]).page(params[:page]).per(10)
       @category_parent_array = Category.category_parent_array_create
+      @tag_list = Tag.page(params[:page]).per(8)
   end
 
   def search_tag
     @category_parent_array = Category.category_parent_array_create
     #検索結果画面のタグ一覧表示
-    @tag_list = Tag.all
+    @tag_list = Tag.page(params[:page]).per(8)
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索に出たタグの投稿表示
-    @stores = @tag.stores
+    @stores = @tag.stores.page(params[:page]).per(10)
   end
 
 
