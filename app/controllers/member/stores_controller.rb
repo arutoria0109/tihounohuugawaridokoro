@@ -1,5 +1,6 @@
 class Member::StoresController < ApplicationController
   before_action :authenticate_member!, except: [:top, :guest_sign_in, :about]
+  before_action :is_matching_login_member, only: [:edit, :update]
 
   def new
     @store = Store.new
@@ -111,4 +112,12 @@ class Member::StoresController < ApplicationController
       params.require(:store).permit(:name, :nearest_station, :description, :image, :category_id, :parent_id, :children_id, :grandchildren_id, :shop)
   end
 
+  def is_matching_login_member
+    @store = Store.find(params[:id])
+    unless current_member.id == @store.member_id
+      redirect_to stores_path
+    end
+  end
+
 end
+

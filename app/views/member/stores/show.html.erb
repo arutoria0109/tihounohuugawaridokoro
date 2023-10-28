@@ -1,146 +1,118 @@
-
 <div class="container">
-   <h1>投稿詳細</h1>
+<h1>投稿詳細</h1>
   <div class="row">
+    <div class="col-lg-5">
 
-<div class="col-lg-5">
+      <table class="tableArea2">
+        <tr>
+          <th><%= image_tag @store.image, size: "240x160" %></th>
+          <td></td>
+        </tr>
 
-<table class="tableArea2">
+        <tr>
+          <th>投稿者</th>
+          <td><%= @store.member.name %></td>
+        </tr>
 
-  <tr>
-    <td>
-       <%= image_tag @store.image, size: "240x160" %>
-    </td>
-    <td></td>
-  </tr>
+        <tr>
+          <th>カテゴリ</th>
+          <td><%= @store.parent.name %>,<%= @store.children.name %>,<%= @store.grandchildren.name %></td>
+        </tr>
 
-<tr>
-    <th>投稿者</th>
-    <td><%= @store.member.name %></td>
-  </tr>
+        <tr>
+          <th>店名</th>
+          <td><%= @store.shop %></td>
+        </tr>
 
-  <tr>
-    <th>カテゴリ</th>
-    <td><%= @store.parent.name %>,<%= @store.children.name %>,<%= @store.grandchildren.name %></td>
-  </tr>
+        <tr>
+          <th>店説明</th>
+          <td><%= @store.description %></td>
+        </tr>
 
-  <tr>
-    <th>店名</th>
-    <td><%= @store.shop %></td>
-  </tr>
+        <tr>
+          <th>最寄り駅</th>
+          <td><%= @store.nearest_station %></td>
+        </tr>
 
-  <tr>
-    <th>店説明</th>
-    <td><%= @store.description %></td>
-  </tr>
+        <tr>
+          <% if @store.member == current_member %>
+          <td><%= link_to "編集する", edit_store_path, class: "edit-button" %></td>
+          <td><%= link_to '投稿削除', @store, class: "destroy-button", method: :delete, data: { confirm: '本当に消しますか？' } %></td>
+          <% end %>
+        </tr>
 
-  <tr>
-    <th>最寄り駅</th>
-    <td><%= @store.nearest_station %></td>
-  </tr>
+        <tr>
+          <th>タグ</th>
+          <td>
+          <% @store_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= tag.name %>
+          <% end %>
+          </td>
+        </tr>
 
-  <tr>
-        <% if @store.member == current_member %>
-    <td><%= link_to "編集する", edit_store_path, class:"btn btn-success" %></td>
-    <td><%= link_to '投稿削除', @store, method: :delete, data: { confirm: '本当に消しますか？' } %></td>
-        <% end %>
-  </tr>
+        <tr>
+          <th>コメント件数</th>
+          <td>：<%= @store.comments.count %>件</td>
+        </tr>
 
-  <tr>
-    <th>
-      タグ
-      </th>
-
-      <td>
-        <% @store_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= tag.name %>
-         <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      コメント件数
-    </th>
-    <td>
-      ：<%= @store.comments.count %>件
-    </td>
-  </tr>
-
-  </table>
-
-  </div>
+      </table>
+    </div>
 
 
-<div class="col-lg-7">
-   <div class= "textbox">
-  <table>
- <tr>
-  <% @store.comments.each do |comment| %>
-    <td>
-    <%= comment.member.name %></br></br>
-    <div class="balloon">
-    <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
-     <% if comment.member == current_member %>
-      <%= link_to "削除", store_comment_path(comment.store, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <div class="col-lg-7">
+      <div class= "textbox">
+        <table>
+
+          <tr>
+            <% @store.comments.each do |comment| %>
+            <td>
+            <%= comment.member.name %></br></br>
+              <div class="balloon">
+                <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
+                <% if comment.member == current_member %>
+                  <%= link_to store_comment_path(comment.store, comment), method: :delete do %>
+                  <i class="fa-solid fa-square-minus" style="color: #f11313;"></i>
+                  <% end %>
+              </div>
+            </td>
+                <% end %>
+          </tr>
+            <% end %>
+        </table>
       </div>
-    </td>
-    <% end %>
-    </tr>
-  <% end %>
-  </table>
+
+      <div class="textarea">
+                <%= form_with(model: [@store, @comment], local: true) do |f| %>
+        <table>
+          <% if @member.email == "guest@example.com" then %>
+          <tr>
+            <td>会員登録するとコメント・いいね可能</td>
+          </tr>
+
+          <% else %>
+
+          <tr>
+            <td><%= f.text_area :comment, placeholder: "コメント入力欄", class: 'form-control'%></td>
+            <td><%= f.submit "送信する" %></td>
+                <% end %>
+
+            <% if @store.like_listed_by?(current_member) %>
+              <%= link_to store_like_lists_path(@store), class: "text-danger", method: :delete, remote: true do %>
+              <td>♥<%= @store.like_lists.count %> いいね</td>
+              <% end %>
+
+            <% else %>
+
+                <%= link_to store_like_lists_path(@store), class: "text-dark", method: :post, remote: true do %>
+                <td>♡<%= @store.like_lists.count %> いいね</td>
+                <% end %>
+            <% end %>
+          <% end %>
+          </tr>
+        </table>
+      </div>
+
+    </div>
   </div>
-
-
-
-
-<div class="textarea">
-  <table>
-<tr>
-  <% if @member.email == "guest@example.com" then %>
-  <td>
-    会員登録するとコメント・いいね可能
-  </td>
-</tr>
-  <% else %>
-
-<tr>
-  <%= form_with(model: [@store, @comment], local: true) do |f| %>
-  <td>
-    <%= f.text_area :comment, placeholder: "コメント入力欄", class: 'form-control'%>
-      </td>
-
-  <td>
-    <%= f.submit "送信する" %>
-      </td>
-  <% end %>
-
-      <% if @store.like_listed_by?(current_member) %>
-    <td>
-      <%= link_to store_like_lists_path(@store), class: "text-danger", method: :delete, remote: true do %>
-        ♥<%= @store.like_lists.count %> いいね
-      <% end %>
-    </td>
-    <% else %>
-    <td>
-      <%= link_to store_like_lists_path(@store), class: "text-dark", method: :post, remote: true do %>
-        ♡<%= @store.like_lists.count %> いいね
-      <% end %>
-    </td>
-   <% end %>
-     <% end %>
-</tr>
-</div>
-</table>
-
-
-
-
-
-
-
-
-
-</div>
-</div>
 </div>
