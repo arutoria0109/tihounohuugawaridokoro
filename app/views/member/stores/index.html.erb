@@ -7,16 +7,13 @@
       <div class="tagbox">
         <h6>タグ検索</h6>
         <% @tag_list.each do |list| %>
-          <table>
-            <tr>
+
               <% unless list.stores.count.zero? %>
-              <i class="fa-sharp fa-solid fa-tag"></i>
-              <%= link_to truncate(list.name, length: 6), search_tag_path(tag_id: list.id), class: "text-dark" %>
+            ・<%= link_to truncate(list.name, length: 6), search_tag_path(tag_id: list.id), class: "text-dark" %>
               <%="(#{list.stores.count})" %>
               <% end %>
         <% end %>
-            </tr>
-          </table>
+
       </div>
     </div>
 
@@ -47,33 +44,16 @@
               <% if @member.email == "guest@example.com" then %>
             <td><%= store.like_lists.count %> いいね</td>
               <% else %>
-            <% if store.like_listed_by?(current_member) %>
-            <td>
-                <%= link_to store_like_lists_path(store), class: "text-danger", method: :delete, remote: true do %>
-                ♥<%= store.like_lists.count %> いいね
-                <% end %>
+            <td id= "like-btn-<%=store.id %>">
+            <%= render 'member/like_lists/like', store: store %>
             </td>
-            <% else %>
-            <td>
-                <%= link_to store_like_lists_path(store), class: "text-dark", method: :post, remote: true do %>
-                ♡<%= store.like_lists.count %> いいね
-                <% end %>
-            </td>
-              <% end %>
             <% end %>
           </tr>
         <% end %>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><%= paginate @all_ranks %></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+
         </table>
       </div>
+      <%= paginate @all_ranks %>
     </div>
   </div>
 </div>

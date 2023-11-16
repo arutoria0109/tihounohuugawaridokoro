@@ -1,0 +1,3 @@
+$("#store_<%= @store.id %>").html(":<%= @store.comments.count %>件");
+$(".comments").html("<%= j(render 'member/comments/comment', store: @store) %>");
+$("#comment_comment").val("");

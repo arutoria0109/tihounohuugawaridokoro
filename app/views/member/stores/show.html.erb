@@ -54,7 +54,7 @@
 
         <tr>
           <th>コメント件数</th>
-          <td>：<%= @store.comments.count %>件</td>
+          <td id= "store_<%= @store.id %>">:<%= @store.comments.count %>件</td>
         </tr>
 
       </table>
@@ -62,29 +62,12 @@
 
 
     <div class="col-lg-7">
-      <div class= "textbox">
-        <table>
-
-          <tr>
-            <% @store.comments.each do |comment| %>
-            <td>
-            <%= comment.member.name %></br></br>
-              <div class="balloon">
-                <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
-                <% if comment.member == current_member %>
-                  <%= link_to store_comment_path(comment.store, comment), method: :delete do %>
-                  <i class="fa-solid fa-square-minus" style="color: #f11313;"></i>
-                  <% end %>
-              </div>
-            </td>
-                <% end %>
-          </tr>
-            <% end %>
-        </table>
+      <div class= "textbox comments">
+        <%= render 'member/comments/comment', store: @store %>
       </div>
 
       <div class="textarea">
-                <%= form_with(model: [@store, @comment], local: true) do |f| %>
+                <%= form_with(model: [@store, @comment], local: false) do |f| %>
         <table>
           <% if @member.email == "guest@example.com" then %>
           <tr>
@@ -96,22 +79,13 @@
           <tr>
             <td><%= f.text_area :comment, placeholder: "コメント入力欄", class: 'form-control'%></td>
             <td><%= f.submit "送信する" %></td>
-                <% end %>
-
-            <% if @store.like_listed_by?(current_member) %>
-              <%= link_to store_like_lists_path(@store), class: "text-danger", method: :delete, remote: true do %>
-              <td>♥<%= @store.like_lists.count %> いいね</td>
-              <% end %>
-
-            <% else %>
-
-                <%= link_to store_like_lists_path(@store), class: "text-dark", method: :post, remote: true do %>
-                <td>♡<%= @store.like_lists.count %> いいね</td>
-                <% end %>
-            <% end %>
-          <% end %>
+            <td id= "like-btn-<%=@store.id %>">
+            <%= render 'member/like_lists/like', store: @store %>
+            </td>
           </tr>
+          <% end %>
         </table>
+          <% end %>
       </div>
 
     </div>

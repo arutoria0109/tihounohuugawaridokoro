@@ -7,14 +7,15 @@ class Member::CommentsController < ApplicationController
     @comment = @store.comments.build(comment_params)
     @comment.member = @member
 
-    if @comment.save
-      redirect_to store_path(@store)
-    end
+    @comment.save
+    #redirect_to request.referer
   end
 
   def destroy
-    Comment.find(params[:id]).destroy
-    redirect_to store_path(params[:store_id])
+    @comment = Comment.find(params[:id])
+    @store = @comment.store
+    @comment.destroy
+    #redirect_to request.referer
   end
 
   private

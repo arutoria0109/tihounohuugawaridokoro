@@ -6,16 +6,11 @@
       <div class="tagbox">
         <h6>タグ検索</h6>
         <% @tag_list.each do |list| %>
-          <table>
-            <tr>
               <% unless list.stores.count.zero? %>
-                <i class="fa-sharp fa-solid fa-tag"></i>
-                <%= link_to truncate(list.name, length: 6), search_tag_path(tag_id: list.id), class: "text-dark" %>
+              ・<%= link_to truncate(list.name, length: 6), search_tag_path(tag_id: list.id), class: "text-dark" %>
                 <%="(#{list.stores.count})" %>
               <% end %>
         <% end %>
-            </tr>
-          </table>
       </div>
     </div>
 
@@ -23,7 +18,7 @@
       <h2>検索結果</h2>
         <div class="tbody">
           <table class= "table table-hover table-inverse mx-auto">
-            <tr class="p-3 mb-2 text-dark" style="background:pink">
+            <tr class="p-3 mb-2 text-dark">
               <th>投稿No</th>
               <th>〇〇地方, 都道府県, カテゴリ</th>
               <th>店舗名</th>
@@ -42,21 +37,14 @@
               <td><%= truncate(store.description, length: 20) %></td>
               <td><%= store.nearest_station %></td>
               <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
-              <td><%= store.like_lists.count %> いいね</td>
+              <td id= "like-btn-<%=store.id %>">
+              <%= render 'member/like_lists/like', store: store %>
+              </td>
             </tr>
            <% end %>
-
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><%= paginate @stores %></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
           </table>
         </div>
+        <%= paginate @stores %>
       </div>
   </div>
 </div>
