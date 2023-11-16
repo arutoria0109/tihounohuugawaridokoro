@@ -52,7 +52,7 @@
 
         <tr>
           <th>コメント件数</th>
-          <td>：<%= @store.comments.count %>件</td>
+          <td id= "store_<%= @store.id %>">:<%= @store.comments.count %>件</td>
         </tr>
 
       </table>
@@ -60,22 +60,8 @@
 
 
     <div class="col-lg-7">
-      <div class= "textbox">
-        <table>
-          <tr>
-            <% @store.comments.each do |comment| %>
-            <td>
-              <%= comment.member.name %></br></br>
-              <div class="balloon">
-              <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
-                <%= link_to admin_store_comment_path(comment.store, comment), method: :delete do %>
-                <i class="fa-solid fa-square-minus" style="color: #f11313;"></i>
-                <% end %>
-              </div>
-            </td>
-          </tr>
-            <% end %>
-        </table>
+      <div class= "textbox comments">
+        <%= render 'admin/comments/comment', store: @store %>
       </div>
     </div>
   </div>

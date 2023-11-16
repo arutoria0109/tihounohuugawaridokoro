@@ -8,14 +8,12 @@ class Member::CommentsController < ApplicationController
     @comment.member = @member
 
     @comment.save
-    #redirect_to request.referer
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @store = @comment.store
     @comment.destroy
-    #redirect_to request.referer
   end
 
   private

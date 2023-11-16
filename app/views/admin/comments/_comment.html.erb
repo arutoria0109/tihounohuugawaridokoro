@@ -1,0 +1,15 @@
+        <table>
+          <tr>
+            <% store.comments.each do |comment| %>
+            <td>
+              <%= comment.member.name %></br></br>
+              <div class="balloon">
+              <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
+                <%= link_to admin_store_comment_path(comment.store, comment), method: :delete, remote: true do %>
+                <i class="fa-solid fa-square-minus" style="color: #f11313;"></i>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+            <% end %>
+        </table>
