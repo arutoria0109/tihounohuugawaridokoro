@@ -95,6 +95,7 @@ class Member::StoresController < ApplicationController
     @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop]).page(params[:page]).per(10)
     @category_parent_array = Category.category_parent_array_create
     @tag_list = Tag.all
+    @member = current_member
   end
 
   def search_tag
@@ -105,6 +106,7 @@ class Member::StoresController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     #検索に出たタグの投稿表示
     @stores = @tag.stores.page(params[:page]).per(1)
+    @member = current_member
   end
 
 

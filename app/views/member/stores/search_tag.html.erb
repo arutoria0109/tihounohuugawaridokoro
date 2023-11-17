@@ -38,10 +38,14 @@
             <td><%= truncate(store.description, length: 20) %></td>
             <td><%= store.nearest_station %></td>
             <td><%= link_to "#{store.comments.count} コメント", store_path(store.id), class: "text-dark" %></td>
+              <% if @member.email == "guest@example.com" then %>
+            <td><%= store.like_lists.count %> いいね</td>
+              <% else %>
             <td id= "like-btn-<%=store.id %>">
-            <%= render 'member/like_lists/like', store: store %>
+              <%= render 'member/like_lists/like', store: store %>
             </td>
-            </tr>
+              <% end %>
+          </tr>
        <% end %>
        </table>
       </div>
