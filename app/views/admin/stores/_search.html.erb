@@ -41,7 +41,7 @@ $(function() {
     console.log({parentId})
     if (parentId != "-") {
       $.ajax({
-        url: '/get_category/children',
+        url: '/admin/get_category/children',
         type: 'GET',
         data: {
           parent_id: parentId,
@@ -72,7 +72,7 @@ $(function() {
     let childrenId = $('#children-category option:selected').data('category');
     if (childrenId != '---') {
       $.ajax({
-        url: '/get_category/grandchildren',
+        url: '/admin/get_category/grandchildren',
         type: 'GET',
         data: {
           children_id: childrenId,

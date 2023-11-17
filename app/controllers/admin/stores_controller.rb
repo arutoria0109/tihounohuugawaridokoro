@@ -68,7 +68,7 @@ class Admin::StoresController < ApplicationController
   private
 
   def store_params
-      params.require(:store).permit(:name, :nearest_station, :description, :image, :category_id, :parent_id, :children_id, :grandchildren_id, :shop)
+    params.require(:store).permit(:name, :nearest_station, :description, :image, :category_id, :parent_id, :children_id, :grandchildren_id, :shop)
   end
 
 end
