@@ -8,16 +8,11 @@
       <div class="tagbox">
       <h6>タグ検索</h6>
       <% @tag_list.each do |list| %>
-        <table>
-          <tr>
           <% unless list.stores.count.zero? %>
-          <i class="fa-sharp fa-solid fa-tag"></i>
-          <%= link_to truncate(list.name, length: 6), admin_search_tag_path(tag_id: list.id), class: "text-dark" %>
+          ・<%= link_to truncate(list.name, length: 6), admin_search_tag_path(tag_id: list.id), class: "text-dark" %>
           <%="(#{list.stores.count})" %>
           <% end %>
       <% end %>
-          </tr>
-        </table>
       </div>
     </div>
 
@@ -45,23 +40,14 @@
             <td><%= truncate(store.description, length: 20) %></td>
             <td><%= store.nearest_station %></td>
             <td><%= link_to "#{store.comments.count} コメント", admin_store_path(store.id), class: "text-dark" %></td>
-            <td>♥<%= store.like_lists.count %> いいね</td>
+            <td class="text-danger">♥<%= store.like_lists.count %> いいね</td>
            </tr>
            <% end %>
-           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><%= paginate @stores %></td>
-            <td></td>
-            <td></td>
-            <td></td>
-           </tr>
+           
          </table>
-
         </div>
+      <%= paginate @stores %>
       </div>
-
   </div>
 </div>
 

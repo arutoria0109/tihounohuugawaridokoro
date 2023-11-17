@@ -51,13 +51,13 @@ class Admin::StoresController < ApplicationController
   def search
     @stores = Store.looks(params[:parent_id], params[:children_id], params[:grandchildren_id], params[:shop]).page(params[:page]).per(10)
     @category_parent_array = Category.category_parent_array_create
-    @tag_list = Tag.page(params[:page]).per(8)
+    @tag_list = Tag.all
   end
 
   def search_tag
     @category_parent_array = Category.category_parent_array_create
     #検索結果画面のタグ一覧表示
-    @tag_list = Tag.page(params[:page]).per(8)
+    @tag_list = Tag.all
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索に出たタグの投稿表示

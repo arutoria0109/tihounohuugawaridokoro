@@ -105,7 +105,7 @@ class Member::StoresController < ApplicationController
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索に出たタグの投稿表示
-    @stores = @tag.stores.page(params[:page]).per(1)
+    @stores = @tag.stores.page(params[:page]).per(10)
     @member = current_member
   end
 
