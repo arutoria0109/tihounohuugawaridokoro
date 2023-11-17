@@ -8,12 +8,12 @@
             <tr>
               <td>
                 <%= link_to store_path(store.id) do %>
-                <%= image_tag store.image, size: "150x100" %>
+                <%= image_tag store.image, size: "120x80" %>
                 <% end %>
               </td>
               <td><%= store.id %></td>
               <td><%= store.parent.name %>,<%= store.children.name %>,<%= store.grandchildren.name %></td>
-              <td><%= link_to truncate(store.shop, length: 10), store_path(store.id), class: "text-dark" %></td>
+              <td><%= store.shop %></td>
             </tr>
         <% end %>
           </table>
