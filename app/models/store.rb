@@ -23,12 +23,12 @@ class Store < ApplicationRecord
 
 
   # 検索方法分岐 (nameは検索対象であるstoresテーブル内のカラム名)
-  def self.looks(parent, children, grandchildren, shop)
+  def self.looks(parent, children, grandchildren, search, word)
     if parent != "-" && children != "---" && grandchildren != "---"
       @store = Store.where(parent_id: parent, children_id: children,grandchildren_id: grandchildren)
     else
-      if shop!= ""
-      @stores = Store.where(shop: shop)
+      if search == "partial_match"
+      @stores = Store.where("shop LIKE?","%#{word}%")
       else
       @stores = Store.all
       end
