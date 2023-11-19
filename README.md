@@ -25,7 +25,14 @@
 
 
 ## 設計書
-後ほど作成予定
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1_GiMkMlG7K61d96V6iHre7isAfLKXjgD/edit#gid=177249337
+ER図
+https://app.diagrams.net/#G1MSfDXdPhqABfXAEbLPxOlBL3egGOBKXL
+画面遷移図
+https://app.diagrams.net/#G1Ec2IA4kHD_fN9n7gB6LHBTH8qyLAEDgA
+アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/1-Dw-OJj2YEOJJUk66v37Bp8DdNE9molAEJhrDRnE22k/edit#gid=549108681
 
 
 ## 開発環境
