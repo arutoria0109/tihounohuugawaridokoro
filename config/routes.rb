@@ -33,12 +33,11 @@ Rails.application.routes.draw do
    namespace :admin do
   get "/" => "members#index"
   resources :members, only: [:show, :edit, :update, :destroy]
-  resources :categories, only: [:index, :create, :edit, :update]
    get 'searche' => 'stores#search'        #カテゴリ検索
    get 'search_tag' => 'stores#search_tag'     #タグ検索
    get '/get_category/children', to: 'stores#get_category_children', defaults: { format: 'json' }
    get '/get_category/grandchildren', to: 'stores#get_category_grandchildren', defaults: { format: 'json' }
-  resources :stores do
+  resources :stores, only: [:index, :show, :edit, :update, :destroy] do
     resources :comments, only: [:destroy]
    end
    end
