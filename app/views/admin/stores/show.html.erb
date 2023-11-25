@@ -11,6 +11,11 @@
         </tr>
 
         <tr>
+          <th>投稿日時</th>
+          <td><%= @store.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+
+        <tr>
           <th>投稿者</th>
           <td><%= @store.member.name %></td>
         </tr>
