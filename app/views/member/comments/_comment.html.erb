@@ -6,7 +6,7 @@
               <div class="balloon">
                 <%= comment.comment %>/<%= comment.created_at.strftime('%Y/%m/%d') %>
                 <% if comment.member == current_member %>
-                  <%= link_to store_comment_path(comment.store, comment), method: :delete, remote: true do %>
+                  <%= link_to store_comment_path(comment.store, comment), method: :delete, remote: true, method: :delete, data: { confirm: '本当に消しますか？' } do %>
                   <i class="fa-solid fa-square-minus" style="color: #f11313;"></i>
                   <% end %>
               </div>
