@@ -17,6 +17,8 @@ module Tihounohuugawaridokoro
     # DBに保存する時刻も日本時間に設定
     config.active_record.default_timezone = :local
 
+    config.i18n.default_locale = :ja
+
 
     # Configuration for the application, engines, and railties goes here.
     #

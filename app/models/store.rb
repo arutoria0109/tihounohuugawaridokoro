@@ -16,7 +16,6 @@ class Store < ApplicationRecord
 
 
   validates :image, presence: true
-  validates :name, presence: true
   validates :shop, presence: true
   validates :description, presence: true
   validates :nearest_station, presence: true

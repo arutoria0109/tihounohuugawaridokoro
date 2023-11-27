@@ -1,8 +1,20 @@
 <%= javascript_pack_tag 'category_form', 'data-turbolinks-track': 'reload' %>
-<div><%= flash[:notice] %></div>
+
 <div class="container">
   <div class="row">
-  <div class="mx-auto" style="width: 500px;">
+    <div class="col-lg-3">
+      <% if @store.errors.any? %>
+  <%= @store.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @store.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+
+    <div class="col-lg-8">
     <h1>風変わり所登録</h1>
 
     <%= form_with model: @store, url: stores_path do |f| %>
@@ -36,7 +48,7 @@
         </tr>
 
         <tr>
-          <th><%= f.label :nearest_station, "最寄り駅" %></th>
+          <th><%= f.label :nearest_station %></th>
           <td><%= f.text_field :nearest_station, class: 'form-control' %></td>
         </tr>
       </table>
@@ -53,7 +65,7 @@
       <%= f.submit '新規投稿', class: "btn btn-success" %>
       </div>
       <% end %>
-<% end %>
-  </div>
+    <% end %>
+    </div>
   </div>
 </div>
