@@ -21,7 +21,7 @@
 
       <table class="tableedit">
         <tr>
-          <th><%= f.label :image, "お店のイメージ" %></th>
+          <th><%= f.label :image %></th>
           <td><%= f.file_field :image, accept: "image/*" %></br>※画像必須</td>
         </tr>
 
@@ -38,12 +38,12 @@
         </tr>
 
         <tr>
-          <th><%= f.label :shop, "店名" %></th>
+          <th><%= f.label :shop %></th>
           <td><%= f.text_field :shop, class: 'form-control' %></td>
         </tr>
 
         <tr>
-          <th><%= f.label :description, "説明文" %></th>
+          <th><%= f.label :description %></th>
           <td><%= f.text_area :description, class: 'form-control' %></td>
         </tr>
 

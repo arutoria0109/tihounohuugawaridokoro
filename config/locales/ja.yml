@@ -11,7 +11,7 @@ ja:
         parent: "親カテゴリ"
         grandchildren: "孫カテゴリ"
         children: "子カテゴリ"
-        image: "写真"
+        image: "お店のイメージ"
         name: "タグ"
         description: "説明文"
         nearest_station: "最寄り駅"
@@ -96,7 +96,6 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
-      Parent: 親カテゴリ
       accepted: を受諾してください
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
