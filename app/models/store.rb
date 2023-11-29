@@ -49,7 +49,7 @@ class Store < ApplicationRecord
     end
 
     # 新しいタグを保存
-    new_tags.each do |new_name|
+    new_tags.uniq.each do |new_name|
       tag = Tag.find_or_create_by(name:new_name)
       self.tags << tag
     end
