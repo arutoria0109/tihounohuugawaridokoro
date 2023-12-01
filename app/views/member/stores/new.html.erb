@@ -22,7 +22,7 @@
       <table class="tableedit">
         <tr>
           <th><%= f.label :image %></th>
-          <td><%= f.file_field :image %></br>※画像必須</td>
+          <td><%= f.file_field :image, accept: "image/*" %></br>※画像必須</td>
         </tr>
 
         <tr>
